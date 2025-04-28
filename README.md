@@ -1,0 +1,2 @@
+# Stamp
+Some stamp app
