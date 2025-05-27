@@ -38,6 +38,7 @@
     "node": "20.19.2"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "axios": "^1.9.0",
     "electron-extension-installer": "^1.2.0"
   }

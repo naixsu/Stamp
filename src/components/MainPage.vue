@@ -1,11 +1,21 @@
 <template>
     <div>
         <h2>Active Stamp Cards</h2>
-        <ul>
-            <li v-for="card in stampCards" :key="card.id">
+
+        <Button
+            label="Add"
+            icon="plus"
+            size="small"
+            color="primary"
+            @click="handleAdd"
+        />
+
+            <div
+                v-for="card in stampCards"
+                :key="card.id"
+            >
                 {{ card.title }} - {{ card.stamps_needed }} stamps needed
-            </li>
-        </ul>
+            </div>
     </div>
 </template>
 
@@ -13,12 +23,19 @@
     import { ref, onMounted } from 'vue'
     import axios from 'axios'
 
+    import Button from './generics/Button.vue'
+
     const stampCards = ref([])
 
     onMounted(async () => {
         const { data } = await axios.get('http://localhost:8000/api/active-stampcards/')
         stampCards.value = data
     })
+
+    function handleAdd() {
+        console.log('handleAdd');
+    }
+
 </script>
 
 
