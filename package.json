@@ -36,5 +36,8 @@
   },
   "volta": {
     "node": "20.19.2"
+  },
+  "dependencies": {
+    "electron-extension-installer": "^1.2.0"
   }
 }

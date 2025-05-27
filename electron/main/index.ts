@@ -42,7 +42,40 @@ let win: BrowserWindow | null = null
 const preload = path.join(__dirname, '../preload/index.mjs')
 const indexHtml = path.join(RENDERER_DIST, 'index.html')
 
+// For devtools
+const IS_DEV = process.env.NODE_ENV === 'development';
+
 async function createWindow() {
+
+  // Devtools
+  // if (IS_DEV) {
+  //   app.setName('Stamp Local');
+  //   const { default: installExtension, VUEJS_DEVTOOLS } = require('electron-extension-installer');
+  //   // https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
+  //   // Fixes this issue: https://github.com/MarshallOfSound/electron-devtools-installer/issues/238#issuecomment-1499578154
+  //   await installExtension(VUEJS_DEVTOOLS, {
+  //       loadExtensionOptions: {
+  //           allowFileAccess: true
+  //       }
+  //   });
+  // }
+
+  if (IS_DEV) {
+    app.setName('Stamp Local');
+    const { default: installExtension, VUEJS_DEVTOOLS } = require('electron-extension-installer');
+
+    try {
+      const name = await installExtension(VUEJS_DEVTOOLS, {
+        loadExtensionOptions: {
+          allowFileAccess: true
+        }
+      });
+      console.log(`✅ Vue DevTools installed: ${name}`);
+    } catch (err) {
+      console.error('❌ Failed to install Vue DevTools:', err);
+    }
+  }
+
   win = new BrowserWindow({
     title: 'Main window',
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
