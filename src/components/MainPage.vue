@@ -10,12 +10,11 @@
             @click="handleAdd"
         />
 
-            <div
+            <StampCard
                 v-for="card in stampCards"
                 :key="card.id"
-            >
-                {{ card.title }} - {{ card.stamps_needed }} stamps needed
-            </div>
+                :card="card"
+            />
     </div>
 </template>
 
@@ -23,7 +22,11 @@
     import { ref, onMounted } from 'vue'
     import axios from 'axios'
 
+    // Generics
     import Button from './generics/Button.vue'
+
+    // Other components
+    import StampCard from './main-stamps/StampCard.vue'
 
     const stampCards = ref([])
 
