@@ -60,6 +60,7 @@ async function createWindow() {
   //   });
   // }
 
+  // TODO: Figure this out
   if (IS_DEV) {
     app.setName('Stamp Local');
     const { default: installExtension, VUEJS_DEVTOOLS } = require('electron-extension-installer');

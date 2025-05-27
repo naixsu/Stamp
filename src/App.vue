@@ -11,9 +11,7 @@
         </a>
     </div> -->
 
-    <Test
-        test-message="Test message props"
-    />
+    <MainPage />
 
     <!-- <div class="flex-center">
         Place static files into the <code>/public</code> folder
@@ -23,7 +21,7 @@
 
 
 <script setup>
-    import Test from './components/Test.vue'
+    import MainPage from './components/MainPage.vue';
 </script>
 
 

@@ -38,6 +38,7 @@
     "node": "20.19.2"
   },
   "dependencies": {
+    "axios": "^1.9.0",
     "electron-extension-installer": "^1.2.0"
   }
 }
