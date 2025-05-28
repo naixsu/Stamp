@@ -10,11 +10,16 @@
             @click="handleAdd"
         />
 
-            <StampCard
-                v-for="card in stampCards"
-                :key="card.id"
-                :card="card"
-            />
+        <StampCard
+            v-for="card in stampCards"
+            :key="card.id"
+            :card="card"
+        />
+
+        <AddStampCardModal
+            v-model="showModal"
+            @submit="handleSubmit"
+        />
     </div>
 </template>
 
@@ -27,8 +32,11 @@
 
     // Other components
     import StampCard from './main-stamps/StampCard.vue'
+    import AddStampCardModal from './main-stamps/AddStampCardModal.vue'
 
+    // Data
     const stampCards = ref([])
+    const showModal = ref(false)
 
     onMounted(async () => {
         const { data } = await axios.get('http://localhost:8000/api/active-stampcards/')
@@ -36,11 +44,14 @@
     })
 
     function handleAdd() {
-        console.log('handleAdd');
+        showModal.value = true;
     }
 
+    function handleSubmit(data) {
+        console.log('handleSubmit');
+        console.log(data);
+    }
 </script>
-
 
 <style scoped>
 
