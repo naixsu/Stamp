@@ -5,7 +5,7 @@ class StampCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = StampCard
         fields = [
-            'id',
+            'pk',
             'title',
             'stamps_needed',
             'stamps_collected',

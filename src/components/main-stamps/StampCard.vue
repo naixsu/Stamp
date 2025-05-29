@@ -1,14 +1,36 @@
 <template>
     <div class="stamp-card">
+        <div class="actions">
+            <Button
+                label="Edit"
+                icon="pencil-outline"
+                size="small"
+                color="secondary"
+                @click="handleEdit"
+            />
+            <Button
+                label="Delete"
+                icon="trash-can-outline"
+                size="small"
+                color="danger"
+                @click="handleDelete"
+            />
+        </div>
         <h3 class="title">{{ card.title }}</h3>
         <p class="stamps">
             {{ card.stamps_needed }} {{ formatStampText }} needed
+        </p>
+
+        Debug
+        <p>
+            {{ card }}
         </p>
     </div>
 </template>
 
 <script setup>
     import { computed } from 'vue'
+    import Button from '../generics/Button.vue'
 
     const props = defineProps({
         card: {
@@ -19,9 +41,19 @@
         },
     })
 
+    const emit = defineEmits(['delete'])
+
     const formatStampText = computed(() => {
         return props.card.stamps_needed === 1 ? 'stamp' : 'stamps'
     })
+
+    function handleDelete() {
+        emit('delete', props.card.pk)
+    }
+
+    function handleEdit() {
+
+    }
 </script>
 
 <style scoped>
@@ -41,5 +73,12 @@
 
     .stamps {
         color: #555;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-top: 1rem;
     }
 </style>
