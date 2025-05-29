@@ -39,7 +39,7 @@
     const showModal = ref(false)
 
     onMounted(async () => {
-        const { data } = await axios.get('http://localhost:8000/api/active-stampcards/')
+        const { data } = await axios.get('http://localhost:8000/api/stampcards/')
         stampCards.value = data
     })
 
@@ -47,9 +47,14 @@
         showModal.value = true;
     }
 
-    function handleSubmit(data) {
-        console.log('handleSubmit');
-        console.log(data);
+    async function handleSubmit(data) {
+        try {
+            const response = await axios.post('http://localhost:8000/api/stampcards/', data)
+            stampCards.value.push(response.data)
+            showModal.value = false
+        } catch (error) {
+            console.error('Failed to submit new stamp card:', error)
+        }
     }
 </script>
 
