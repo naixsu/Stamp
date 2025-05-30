@@ -21,6 +21,16 @@
             {{ card.stamps_needed }} {{ formatStampText }} needed
         </p>
 
+        <div class="stamp-row">
+            <StampEntry
+                v-for="entry in card.entries"
+                :key="entry.pk"
+                :filled="entry.is_active"
+                :entry-pk="entry.pk"
+                @toggle="handleToggle"
+            />
+        </div>
+
         Debug
         <p>
             {{ card }}
@@ -31,6 +41,7 @@
 <script setup>
     import { computed } from 'vue'
     import Button from '../generics/Button.vue'
+    import StampEntry from './StampEntry.vue'
 
     const props = defineProps({
         card: {
@@ -54,6 +65,12 @@
     function handleEdit() {
 
     }
+
+    function handleToggle(entryPk) {
+        console.log('handleToggle');
+        console.log(entryPk);
+    }
+
 </script>
 
 <style scoped>
@@ -80,5 +97,11 @@
         justify-content: flex-end;
         gap: 0.5rem;
         margin-top: 1rem;
+    }
+
+    .stamp-row {
+        display: flex;
+        gap: 0.3rem;
+        margin-top: 0.5rem;
     }
 </style>
