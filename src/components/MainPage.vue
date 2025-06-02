@@ -52,7 +52,7 @@
      */
     async function fetchCards() {
         const { data } = await axios.get('http://localhost:8000/api/stamp-cards/')
-        stampCards.value = data ;
+        stampCards.value = data;
     }
 
     function handleAdd() {
@@ -61,20 +61,24 @@
 
     async function handleSubmit(data) {
         try {
-            const response = await axios.post('http://localhost:8000/api/stamp-cards/', data)
-            stampCards.value.push(response.data)
-            showModal.value = false
+            const response = await axios.post('http://localhost:8000/api/stamp-cards/', data);
+            stampCards.value.push(response.data);
+            showModal.value = false;
         } catch (error) {
-            console.error('Failed to submit new stamp card:', error)
+            console.error('Failed to submit new stamp card:', error);
         }
     }
 
     async function handleDelete(cardPk) {
+        // NOTE: Soft deleting instead of hard deleting
         try {
-            await axios.delete(`http://localhost:8000/api/stamp-cards/${cardPk}/`)
-            fetchCards();
+            await axios.patch(`http://localhost:8000/api/stamp-cards/${cardPk}/`, {
+                is_removed: true,
+            });
         } catch (error) {
-            console.error('Failed to delete stamp card:', error)
+            console.error(`Failted to delete stamp card ${cardPk}`, error);
+        } finally {
+            fetchCards();
         }
     }
 
@@ -84,9 +88,9 @@
 
             await axios.patch(`http://localhost:8000/api/stamp-entries/${entry.pk}/`, {
                 is_active: newStatus,
-            })
+            });
         } catch (error) {
-            console.error(`Failted to update stamp entry ${entry.pk}`, error)
+            console.error(`Failted to update stamp entry ${entry.pk}`, error);
         } finally {
             fetchCards();
         }

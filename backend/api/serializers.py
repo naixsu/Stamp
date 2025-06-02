@@ -21,6 +21,7 @@ class StampCardSerializer(serializers.ModelSerializer):
             'stamps_needed',
             'stamps_collected',
             'is_redeemed',
+            'is_removed',
             'date_created',
             'entries',
         ]

@@ -1,4 +1,9 @@
 <template>
+    <!--
+        TODO:
+            - Handle error states
+            - Handle lots of stamp entries to be added
+    -->
     <div
         v-if="modelValue"
         class="modal-overlay"
