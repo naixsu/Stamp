@@ -1,8 +1,7 @@
 <template>
     <!--
         TODO:
-            - Handle error states
-            - Handle lots of stamp entries to be added
+            - Handle color variables in different files
     -->
     <div
         v-if="modelValue"
@@ -13,23 +12,48 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input
-                    id="title"
-                    v-model="form.title"
-                    type="text"
-                    placeholder="Enter a title"
-                />
+                <div class="error-container">
+                    <input
+                        id="title"
+                        v-model="form.title"
+                        type="text"
+                        placeholder="Enter a title"
+                        :class="{
+                            'invalid': errors.title
+                        }"
+                        @focus="errors.title = false"
+                    />
+                    <p
+                        v-if="errors.title"
+                        class="message"
+                    >
+                        Tite is required.
+                    </p>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="stamps">Stamps Needed</label>
-                <input
-                    id="stamps"
-                    v-model.number="form.stamps_needed"
-                    type="number"
-                    min="1"
-                    placeholder="Enter number of stamps"
-                />
+                <div class="error-container">
+                    <input
+                        id="stamps"
+                        v-model.number="form.stamps_needed"
+                        type="number"
+                        min="1"
+                        max="20"
+                        placeholder="Enter number of stamps"
+                        :class="{
+                            'invalid': errors.stampsNeeded
+                        }"
+                        @focus="errors.stampsNeeded = false"
+                    />
+                    <p
+                        v-if="errors.stampsNeeded"
+                        class="message"
+                    >
+                        Enter a valid stamp count (1–20 only).
+                    </p>
+                </div>
             </div>
 
             <div class="modal-actions">
@@ -53,7 +77,7 @@
 </template>
 
 <script setup>
-    import { reactive } from 'vue'
+    import { reactive, ref, computed } from 'vue'
     import Button from '../generics/Button.vue'
 
     const props = defineProps({
@@ -62,13 +86,32 @@
 
     const emit = defineEmits(['update:modelValue', 'submit'])
 
+    // Data
+    const errors = ref({
+        title: false,
+        stampsNeeded: false,
+    })
     const form = reactive({
         title: '',
         stamps_needed: 1,
     })
 
     function handleSubmit() {
-        if (!form.title || form.stamps_needed < 1) return
+        // Validate errors
+        const isEmpty = value =>
+            value === null || value === undefined || value === '';
+
+        if (form.stamps_needed < 1 || form.stamps_needed > 20) {
+            errors.value.stampsNeeded = true;
+        }
+
+        if (isEmpty(form.title)) {
+            errors.value.title = true;
+        }
+
+        if (Object.values(errors.value).some(error => error === true)) {
+            return;
+        }
 
         emit('submit', {
             ...form,
@@ -137,10 +180,29 @@
         color: #888;
     }
 
+    input.invalid {
+        border-color: #ED2B42;
+        box-shadow: 0 0 0 4px rgba(#ED2B42, .25);
+    }
+
     .modal-actions {
         display: flex;
         justify-content: flex-end;
         gap: 0.5rem;
         margin-top: 1rem;
+    }
+
+    .error-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .error-container .message {
+        display: flex;
+        align-items: center;
+        color: #ED2B42;
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0;
     }
 </style>
