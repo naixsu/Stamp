@@ -30,6 +30,11 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# Insert Applications you want to be documented
+DOCUMENTED_APPS = [
+    "api",
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    *DOCUMENTED_APPS,
 ]
 
 MIDDLEWARE = [

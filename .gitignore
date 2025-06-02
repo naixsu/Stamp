@@ -29,3 +29,7 @@ venv
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+*.pyc
+db.sqlite3
+*.sqlite3
