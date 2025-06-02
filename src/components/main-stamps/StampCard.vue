@@ -18,15 +18,15 @@
         </div>
         <h3 class="title">{{ card.title }}</h3>
         <p class="stamps">
-            {{ card.stamps_needed }} {{ formatStampText }} needed
+            {{ formatStampText }}
         </p>
 
         <div class="stamp-row">
             <StampEntry
                 v-for="entry in card.entries"
                 :key="entry.pk"
-                :filled="entry.is_active"
-                :entry-pk="entry.pk"
+                :disabled="entry.is_active"
+                :entry="entry"
                 @toggle="handleToggle"
             />
         </div>
@@ -52,10 +52,18 @@
         },
     })
 
-    const emit = defineEmits(['delete'])
+    const emit = defineEmits([
+        'delete',
+        'update-entry',
+    ])
 
     const formatStampText = computed(() => {
-        return props.card.stamps_needed === 1 ? 'stamp' : 'stamps'
+        const prefix = props.card.stamps_needed - props.card.stamps_collected;
+        const suffix = props.card.stamps_needed === 1 ? 'stamp' : 'stamps'
+
+        return prefix > 0 ?
+            `${prefix} ${suffix} needed` :
+            'All stamps collected';
     })
 
     function handleDelete() {
@@ -66,9 +74,8 @@
 
     }
 
-    function handleToggle(entryPk) {
-        console.log('handleToggle');
-        console.log(entryPk);
+    function handleToggle(entry) {
+        emit('update-entry', entry)
     }
 
 </script>

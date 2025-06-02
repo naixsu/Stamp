@@ -120,7 +120,9 @@
     }
 
     .btn:disabled {
-        background: #ccc;
+        background: #FAFAFA;
+        color: #6D7679;
+        border-color: #E4E7E8;
         cursor: not-allowed;
     }
 </style>

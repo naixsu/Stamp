@@ -15,6 +15,7 @@
             :key="card.pk"
             :card="card"
             @delete="handleDelete"
+            @update-entry="handleEntryUpdate"
         />
 
         <AddStampCardModal
@@ -50,7 +51,7 @@
      * - Handle these functions in a different file so MainPage.vue is cleaner
      */
     async function fetchCards() {
-        const { data } = await axios.get('http://localhost:8000/api/stampcards/')
+        const { data } = await axios.get('http://localhost:8000/api/stamp-cards/')
         stampCards.value = data ;
     }
 
@@ -60,7 +61,7 @@
 
     async function handleSubmit(data) {
         try {
-            const response = await axios.post('http://localhost:8000/api/stampcards/', data)
+            const response = await axios.post('http://localhost:8000/api/stamp-cards/', data)
             stampCards.value.push(response.data)
             showModal.value = false
         } catch (error) {
@@ -70,12 +71,27 @@
 
     async function handleDelete(cardPk) {
         try {
-            await axios.delete(`http://localhost:8000/api/stampcards/${cardPk}/`)
+            await axios.delete(`http://localhost:8000/api/stamp-cards/${cardPk}/`)
             fetchCards();
         } catch (error) {
             console.error('Failed to delete stamp card:', error)
         }
     }
+
+    async function handleEntryUpdate(entry) {
+        try {
+            const newStatus = !entry.is_active;
+
+            await axios.patch(`http://localhost:8000/api/stamp-entries/${entry.pk}/`, {
+                is_active: newStatus,
+            })
+        } catch (error) {
+            console.error(`Failted to update stamp entry ${entry.pk}`, error)
+        } finally {
+            fetchCards();
+        }
+    }
+
 </script>
 
 <style scoped>

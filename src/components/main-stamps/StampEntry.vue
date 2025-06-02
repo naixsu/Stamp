@@ -1,13 +1,11 @@
 <template>
     <!--
         TODO:
-            - Do the filled one
-            - Disable(?) the filled one
-            - Add `disabled` to `Button.vue`
+            - Make filled one look better?
     -->
     <Button
-        :class="{ filled }"
-        icon="square"
+        :icon="disabled ? 'check' : 'square'"
+        :disabled="disabled"
         size="small"
         @click="handleToggle"
     />
@@ -17,13 +15,13 @@
     import Button from '../generics/Button.vue'
 
     const props = defineProps({
-        filled: {
+        disabled: {
             type: Boolean,
             default: false,
         },
 
-        entryPk: {
-            type: Number,
+        entry: {
+            type: Object,
             required: true,
         },
     })
@@ -31,9 +29,8 @@
     const emit = defineEmits(['toggle'])
 
     function handleToggle() {
-        emit('toggle', props.entryPk)
+        emit('toggle', props.entry)
     }
-
 </script>
 
 <style scoped>
@@ -41,9 +38,5 @@
         font-size: 1.2rem;
         opacity: 0.3;
         transition: opacity 0.2s;
-    }
-
-    .stamp.filled {
-        opacity: 1;
     }
 </style>
