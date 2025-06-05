@@ -25,8 +25,9 @@
             </div>
 
             <AddStampCardModal
-                v-model="showModal"
+                v-if="showModal"
                 @submit="handleSubmit"
+                @close="handleClose"
             />
         </div>
 
@@ -65,6 +66,10 @@
 
     function handleAdd() {
         showModal.value = true;
+    }
+
+    function handleClose() {
+        showModal.value = false;
     }
 
     async function handleSubmit(data) {

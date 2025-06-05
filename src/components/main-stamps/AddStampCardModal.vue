@@ -3,10 +3,7 @@
         TODO:
             - Handle color variables in different files
     -->
-    <div
-        v-if="modelValue"
-        class="modal-overlay"
-    >
+    <div class="modal-overlay">
         <div class="modal">
             <h3 class="modal-title">Add New Stamp Card</h3>
 
@@ -77,20 +74,17 @@
 </template>
 
 <script setup>
-    import { reactive, ref, computed } from 'vue'
+    import { reactive, ref } from 'vue'
     import Button from '../generics/Button.vue'
 
-    const props = defineProps({
-        modelValue: Boolean,
-    })
-
-    const emit = defineEmits(['update:modelValue', 'submit'])
+    const emit = defineEmits(['close', 'submit'])
 
     // Data
     const errors = ref({
         title: false,
         stampsNeeded: false,
     })
+
     const form = reactive({
         title: '',
         stamps_needed: 1,
@@ -119,11 +113,12 @@
 
         form.title = ''
         form.stamps_needed = 1
-        emit('update:modelValue', false)
+        emit('close')
     }
 
     function handleCancel() {
-        emit('update:modelValue', false)
+        console.log('cancel');
+        emit('close')
     }
 </script>
 
