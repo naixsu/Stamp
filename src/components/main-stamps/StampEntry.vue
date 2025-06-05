@@ -3,12 +3,14 @@
         TODO:
             - Make filled one look better?
     -->
-    <Button
-        :icon="disabled ? 'check' : 'square'"
-        :disabled="disabled"
-        size="small"
-        @click="handleToggle"
-    />
+    <div class="stamp-entry">
+        <Button
+            :icon="disabled ? 'check' : 'square'"
+            :disabled="disabled"
+            size="large"
+            @click="handleToggle"
+        />
+    </div>
 </template>
 
 <script setup>
@@ -34,9 +36,11 @@
 </script>
 
 <style scoped>
-    .stamp {
-        font-size: 1.2rem;
-        opacity: 0.3;
-        transition: opacity 0.2s;
+    .stamp-entry {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;  /* horizontally center */
+        align-items: flex-start;  /* align top vertically */
     }
 </style>

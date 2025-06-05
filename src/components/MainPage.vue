@@ -19,7 +19,6 @@
                     :key="card.pk"
                     :card="card"
                     @delete="handleDelete"
-                    @update-entry="handleEntryUpdate"
                     @click="handleCardClick"
                 />
             </div>
@@ -33,7 +32,9 @@
 
         <!-- Details Panel -->
         <StampCardDetails
+            v-if="selectedCard"
             :card="selectedCard"
+            @update-entry="handleEntryUpdate"
         />
     </div>
 </template>
@@ -90,21 +91,29 @@
         } catch (error) {
             console.error(`Failed to delete stamp card ${cardPk}`, error);
         } finally {
-            fetchCards();
+            await fetchCards();
         }
     }
 
     async function handleEntryUpdate(entry) {
         try {
             const newStatus = !entry.is_active;
-
             await axios.patch(`http://localhost:8000/api/stamp-entries/${entry.pk}/`, {
                 is_active: newStatus,
             });
+            // Update locally:
+            // Update selectedCard entries
+            if (selectedCard.value) {
+                const targetEntry = selectedCard.value.entries.find(e => e.pk === entry.pk);
+                if (targetEntry) targetEntry.is_active = newStatus;
+            }
+
+            // TODO:
+            // Figure out how to update the card inside `stampCards` for the sidebar
+            // without calling `fetchCards()`
+            await fetchCards();
         } catch (error) {
             console.error(`Failed to update stamp entry ${entry.pk}`, error);
-        } finally {
-            fetchCards();
         }
     }
 

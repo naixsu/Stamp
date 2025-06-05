@@ -2,21 +2,25 @@
     <!--
         TODO:
             - When card is deleted, the details will still show
+            - Improve the stamp-grid-wrapper class
     -->
     <div
         class="details-panel"
         v-if="card"
     >
-        <h3>{{ card.title }}</h3>
-        <div class="actions">
-            <Button
-                label="Edit"
-                icon="pencil-outline"
-                size="small"
-                color="secondary"
-                @click="handleEdit"
-            />
-        </div>
+    <h3>{{ card.title }}</h3>
+    <div class="actions">
+        <Button
+            label="Edit"
+            icon="pencil-outline"
+            size="medium"
+            color="secondary"
+            @click="handleEdit"
+        />
+    </div>
+
+    <!-- This is the square wrapper for the stamp entries -->
+    <div class="stamp-grid-wrapper">
         <div class="stamp-row">
             <StampEntry
                 v-for="entry in card.entries"
@@ -26,8 +30,9 @@
                 @toggle="handleToggle"
             />
         </div>
-
     </div>
+</div>
+
 </template>
 
 <script setup>
@@ -40,6 +45,16 @@
             required: false,
         },
     });
+
+    const emit = defineEmits(['update-entry'])
+
+    function handleToggle(entry) {
+        emit('update-entry', entry);
+    }
+
+    function handleEdit(entry) {
+        console.log('handleEdit', entry);
+    }
 </script>
 
 <style scoped>
@@ -58,9 +73,22 @@
         margin-top: 1rem;
     }
 
-    .stamp-row {
+    .stamp-grid-wrapper {
+        margin-top: 1rem;
+        background-color: #2f2e41;
+        padding: 1rem;
+        border-radius: 10px;
+        aspect-ratio: 1 / 1; /* Keeps the wrapper square */
         display: flex;
-        gap: 0.3rem;
-        margin-top: 0.5rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .stamp-row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.5rem;
+        width: 100%;
+        height: 100%;
     }
 </style>

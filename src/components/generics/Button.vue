@@ -34,9 +34,9 @@
 
     const sizeClass = computed(() => {
         return {
-            small: 'btn-sm',
-            medium: 'btn-md',
-            large: 'btn-lg'
+            small: 'btn-small',
+            medium: 'btn-medium',
+            large: 'btn-large'
         }[props.size]
     })
 
