@@ -1,26 +1,38 @@
 <template>
-    <div>
-        <h2>Active Stamp Cards</h2>
+    <div class="main-layout">
+        <!-- Sidebar Section -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Active Stamp Cards</h2>
+                <Button
+                    label="Add"
+                    icon="plus"
+                    size="small"
+                    color="primary"
+                    @click="handleAdd"
+                />
+            </div>
 
-        <Button
-            label="Add"
-            icon="plus"
-            size="small"
-            color="primary"
-            @click="handleAdd"
-        />
+            <div class="stamp-cards-list">
+                <StampCardSidebar
+                    v-for="card in stampCards"
+                    :key="card.pk"
+                    :card="card"
+                    @delete="handleDelete"
+                    @update-entry="handleEntryUpdate"
+                    @click="handleCardClick"
+                />
+            </div>
 
-        <StampCard
-            v-for="card in stampCards"
-            :key="card.pk"
-            :card="card"
-            @delete="handleDelete"
-            @update-entry="handleEntryUpdate"
-        />
+            <AddStampCardModal
+                v-model="showModal"
+                @submit="handleSubmit"
+            />
+        </div>
 
-        <AddStampCardModal
-            v-model="showModal"
-            @submit="handleSubmit"
+        <!-- Details Panel -->
+        <StampCardDetails
+            :card="selectedCard"
         />
     </div>
 </template>
@@ -33,23 +45,19 @@
     import Button from './generics/Button.vue'
 
     // Other components
-    import StampCard from './main-stamps/StampCard.vue'
+    import StampCardSidebar from './main-stamps/StampCardSidebar.vue'
     import AddStampCardModal from './main-stamps/AddStampCardModal.vue'
+    import StampCardDetails from './main-stamps/StampCardDetails.vue'
 
     // Data
     const stampCards = ref([])
     const showModal = ref(false)
+    const selectedCard = ref(null)
 
     onMounted(async () => {
         fetchCards();
     })
 
-
-    /**
-     * TODO:
-     * - Get base urls and stuff like that so this can be cleaner
-     * - Handle these functions in a different file so MainPage.vue is cleaner
-     */
     async function fetchCards() {
         const { data } = await axios.get('http://localhost:8000/api/stamp-cards/')
         stampCards.value = data;
@@ -70,13 +78,12 @@
     }
 
     async function handleDelete(cardPk) {
-        // NOTE: Soft deleting instead of hard deleting
         try {
             await axios.patch(`http://localhost:8000/api/stamp-cards/${cardPk}/`, {
                 is_removed: true,
             });
         } catch (error) {
-            console.error(`Failted to delete stamp card ${cardPk}`, error);
+            console.error(`Failed to delete stamp card ${cardPk}`, error);
         } finally {
             fetchCards();
         }
@@ -90,14 +97,43 @@
                 is_active: newStatus,
             });
         } catch (error) {
-            console.error(`Failted to update stamp entry ${entry.pk}`, error);
+            console.error(`Failed to update stamp entry ${entry.pk}`, error);
         } finally {
             fetchCards();
         }
     }
 
+    function handleCardClick(card) {
+        selectedCard.value = card
+    }
 </script>
 
 <style scoped>
+    .main-layout {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
 
+    .sidebar {
+        width: 300px;
+        background-color: #2f2e41;
+        color: white;
+        padding: 1rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
+
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .stamp-cards-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
 </style>
