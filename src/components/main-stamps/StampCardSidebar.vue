@@ -1,4 +1,9 @@
 <template>
+    <!--
+        TODO:
+            - Truncate long card titles
+            - Add a search bar
+    -->
     <div
         class="stamp-card"
         @click="handleClick"
@@ -32,9 +37,10 @@
     const emit = defineEmits(['delete', 'click'])
 
     const formatStampText = computed(() => {
-        const remaining = props.card.stamps_needed - props.card.stamps_collected;
-        const suffix = props.card.stamps_needed === 1 ? 'stamp' : 'stamps';
-        return remaining > 0 ? `${remaining} ${suffix} needed` : 'All stamps collected';
+        const total = props.card.stamps_needed
+        const remaining = total- props.card.stamps_collected;
+        const suffix = total === 1 ? 'stamp' : 'stamps';
+        return remaining > 0 ? `${remaining}/${total} ${suffix} needed` : 'All stamps collected';
     })
 
     function handleDelete() {

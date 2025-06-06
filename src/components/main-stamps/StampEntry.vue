@@ -5,7 +5,7 @@
     -->
     <div class="stamp-entry">
         <Button
-            :icon="disabled ? 'check' : 'square'"
+            :icon="disabled ? 'check' : 'plus'"
             :disabled="disabled"
             size="large"
             @click="handleToggle"

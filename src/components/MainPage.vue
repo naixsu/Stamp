@@ -35,6 +35,7 @@
             v-if="selectedCard"
             :card="selectedCard"
             @update-entry="handleEntryUpdate"
+            @mark-complete="handleMarkComplete"
         />
     </div>
 </template>
@@ -60,17 +61,21 @@
         fetchCards();
     })
 
-    async function fetchCards() {
-        const { data } = await axios.get('http://localhost:8000/api/stamp-cards/')
-        stampCards.value = data;
-    }
-
     function handleAdd() {
         showModal.value = true;
     }
 
     function handleClose() {
         showModal.value = false;
+    }
+
+    function handleCardClick(card) {
+        selectedCard.value = card
+    }
+
+    async function fetchCards() {
+        const { data } = await axios.get('http://localhost:8000/api/stamp-cards/')
+        stampCards.value = data;
     }
 
     async function handleSubmit(data) {
@@ -117,8 +122,15 @@
         }
     }
 
-    function handleCardClick(card) {
-        selectedCard.value = card
+    async function handleMarkComplete(card) {
+        try {
+            await axios.patch(`http://localhost:8000/api/stamp-cards/${card.pk}/`, {
+                is_redeemed: true,
+            });
+            await fetchCards();
+        } catch (error) {
+            console.error(`Failed to update card ${card.pk}`, error);
+        }
     }
 </script>
 

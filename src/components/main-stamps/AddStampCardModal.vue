@@ -2,6 +2,8 @@
     <!--
         TODO:
             - Handle color variables in different files
+            - Handle max char length for card titles
+            - Don't add stamp cards that have the same titles
     -->
     <div class="modal-overlay">
         <div class="modal">
