@@ -56,7 +56,7 @@
     .stamp-card {
         padding: 1rem;
         border-radius: 8px;
-        background: #2a2b30;
+        background: var(--color-bg-medium);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 1rem;
         cursor: pointer;
@@ -64,7 +64,7 @@
     }
 
     .stamp-card:hover {
-        background: #35363b;
+        background: var(--color-primary);
     }
 
     .title {

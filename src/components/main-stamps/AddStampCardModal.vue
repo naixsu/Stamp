@@ -136,13 +136,13 @@
     }
 
     .modal {
-        background: #2f2e41;
+        background: var(--color-bg-medium);
+        color: var(--color-text);
         padding: 2rem;
         border-radius: 10px;
         width: 100%;
         max-width: 350px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        color: white;
     }
 
     .modal-title {
@@ -167,10 +167,10 @@
         width: 100%;
         padding: 0.5rem 0.75rem;
         font-size: 0.95rem;
-        border: 1px solid #444;
         border-radius: 6px;
-        background: #1e1d2b;
-        color: white;
+        background: var(--color-bg-dark);
+        border: 1px solid var(--color-accent);
+        color: var(--color-text);
     }
 
     input::placeholder {

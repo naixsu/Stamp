@@ -84,34 +84,34 @@
 
     /* Colors */
     .btn-primary {
-        background: #007bff;
+        background: var(--color-primary);
         color: white;
     }
 
     .btn-primary:hover {
-        background: #0056b3;
+        background: var(--color-accent);
     }
 
     .btn-secondary {
-        background: #6c757d;
+        background: var(--color-bg-medium);
         color: white;
     }
 
     .btn-secondary:hover {
-        background: #5a6268;
+        background: var(--color-primary);
     }
 
     .btn-success {
-        background: #28a745;
-        color: white;
+        background: var(--color-highlight);
+        color: black;
     }
 
     .btn-success:hover {
-        background: #218838;
+        background: var(--color-accent);
     }
 
     .btn-danger {
-        background: #dc3545;
+        background: #ED2B42;
         color: white;
     }
 
@@ -120,7 +120,7 @@
     }
 
     .btn:disabled {
-        background: #FAFAFA;
+        background: var(--color-bg-medium);
         color: #6D7679;
         border-color: #E4E7E8;
         cursor: not-allowed;

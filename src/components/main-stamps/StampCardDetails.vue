@@ -85,7 +85,7 @@
     .details-panel {
         flex: 1;
         padding: 1.5rem;
-        background-color: #1f1f2b;
+        background-color: var(--color-bg-dark);
         color: white;
         overflow-y: auto;
     }
@@ -100,7 +100,7 @@
     .stamp-grid-wrapper {
         position: relative;
         margin-top: 1rem;
-        background-color: #2f2e41;
+        background-color: var(--color-bg-medium);
         padding: 1rem;
         border-radius: 10px;
         aspect-ratio: 1 / 1;

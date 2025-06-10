@@ -143,7 +143,7 @@
 
     .sidebar {
         width: 300px;
-        background-color: #2f2e41;
+        background-color: var(--color-bg-dark);
         color: white;
         padding: 1rem;
         box-sizing: border-box;
