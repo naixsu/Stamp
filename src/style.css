@@ -14,6 +14,19 @@
   --color-primary: #3c649f;
   --color-accent: #4779c4;
   --color-highlight: #83aff0;
+
+  /* --color-bg-dark: #011f4b;
+  --color-bg-medium: #03396c;
+  --color-primary: #005b96;
+  --color-accent: #6497b1;
+  --color-highlight: #b3cde0; */
+
+  /* --color-bg-dark: #50b8e7;
+  --color-bg-medium: #84cdee;
+  --color-primary: #b9e2f5;
+  --color-accent: #dcf0fa;
+  --color-highlight: #edf7fc; */
+
   --color-text: #ffffff;
 
   color-scheme: dark;
