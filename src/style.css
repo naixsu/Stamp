@@ -14,23 +14,24 @@
   --color-primary: #3c649f;
   --color-accent: #4779c4;
   --color-highlight: #83aff0;
+  --color-disabled: #03396c;
 
   /* --color-bg-dark: #011f4b;
   --color-bg-medium: #03396c;
   --color-primary: #005b96;
   --color-accent: #6497b1;
-  --color-highlight: #b3cde0; */
+  --color-highlight: #b3cde0;
 
-  /* --color-bg-dark: #50b8e7;
+  --color-bg-dark: #50b8e7;
   --color-bg-medium: #84cdee;
   --color-primary: #b9e2f5;
   --color-accent: #dcf0fa;
-  --color-highlight: #edf7fc; */
+  --color-highlight: #edf7fc;
 
   --color-bg-dark: #9fb3df;
   --color-bg-medium: #9ec6f3;
   --color-primary: #bddde4;
-  --color-accent: #fff1d5;
+  --color-accent: #fff1d5; */
 
   --color-text: #ffffff;
 
@@ -48,13 +49,13 @@ a:hover {
   color: #535bf2;
 }
 
-body {
+/* body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
+} */
 
 /* h1 {
   font-size: 3.2em;

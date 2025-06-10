@@ -7,7 +7,7 @@
                 <Button
                     label="Add"
                     icon="plus"
-                    size="small"
+                    size="medium"
                     color="primary"
                     @click="handleAdd"
                 />
@@ -73,9 +73,26 @@
         selectedCard.value = card
     }
 
+    function handleUpdateSelectedCard() {
+        if (!selectedCard.value) {
+            return;
+        }
+
+        const updated = stampCards.value.find(card =>
+            card.pk === selectedCard.value.pk
+        )
+
+        if (updated) {
+            selectedCard.value = updated;
+        }
+    }
+
     async function fetchCards() {
         const { data } = await axios.get('http://localhost:8000/api/stamp-cards/')
         stampCards.value = data;
+
+        // Updates the card inside `stampCards` for the sidebar
+        handleUpdateSelectedCard();
     }
 
     async function handleSubmit(data) {
@@ -106,16 +123,6 @@
             await axios.patch(`http://localhost:8000/api/stamp-entries/${entry.pk}/`, {
                 is_active: newStatus,
             });
-            // Update locally:
-            // Update selectedCard entries
-            if (selectedCard.value) {
-                const targetEntry = selectedCard.value.entries.find(e => e.pk === entry.pk);
-                if (targetEntry) targetEntry.is_active = newStatus;
-            }
-
-            // TODO:
-            // Figure out how to update the card inside `stampCards` for the sidebar
-            // without calling `fetchCards()`
             await fetchCards();
         } catch (error) {
             console.error(`Failed to update stamp entry ${entry.pk}`, error);

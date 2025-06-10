@@ -120,8 +120,8 @@
     }
 
     .btn:disabled {
-        background: var(--color-bg-medium);
-        color: #6D7679;
+        background: var(--color-disabled);
+        color: white;
         border-color: #E4E7E8;
         cursor: not-allowed;
     }

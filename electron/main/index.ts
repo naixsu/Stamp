@@ -82,7 +82,7 @@ async function createWindow() {
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
     minHeight: 720,
     // TOOD: Figure this out
-    minWidth: 1080,
+    minWidth: 1200,
     // resizable: false,
     fullscreen: false,
     webPreferences: {
