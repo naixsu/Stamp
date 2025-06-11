@@ -30,6 +30,7 @@
 
             <AddStampCardModal
                 v-if="showModal"
+                :existing-cards="stampCards"
                 @submit="handleSubmit"
                 @close="handleClose"
             />

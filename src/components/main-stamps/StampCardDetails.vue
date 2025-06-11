@@ -4,6 +4,8 @@
             - When card is deleted, the details will still show,
                 Add something like a 'No card selected' empty state
             - Improve the stamp-grid-wrapper class
+            - Truncate long card titles if ever we dont
+                handle max char length on making cards
     -->
     <div
         v-if="props.card"

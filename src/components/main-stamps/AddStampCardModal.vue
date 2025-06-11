@@ -3,24 +3,30 @@
         TODO:
             - Handle color variables in different files
             - Handle max char length for card titles
-            - Don't add stamp cards that have the same titles
     -->
     <div class="modal-overlay">
         <div class="modal">
-            <h3 class="modal-title">Add New Stamp Card</h3>
+            <h3 class="modal-title">
+                Add New Stamp Card
+            </h3>
 
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">
+                    Title
+                </label>
                 <div class="error-container">
                     <input
                         id="title"
-                        v-model="form.title"
+                        v-model.trim="form.title"
                         type="text"
                         placeholder="Enter a title"
                         :class="{
-                            'invalid': errors.title
+                            'invalid': errors.title || errors.duplicate
                         }"
-                        @focus="errors.title = false"
+                        @focus="
+                            errors.title = false;
+                            errors.duplicate = false;
+                        "
                     />
                     <p
                         v-if="errors.title"
@@ -28,11 +34,19 @@
                     >
                         Tite is required.
                     </p>
+                    <p
+                        v-if="errors.duplicate"
+                        class="message"
+                    >
+                        Duplicate title.
+                    </p>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="stamps">Stamps Needed</label>
+                <label for="stamps">
+                    Stamps Needed
+                </label>
                 <div class="error-container">
                     <input
                         id="stamps"
@@ -79,12 +93,20 @@
     import { reactive, ref } from 'vue'
     import Button from '../generics/Button.vue'
 
+    const props = defineProps({
+        existingCards: {
+            type: Array,
+            default: () => [],
+        }
+    })
+
     const emit = defineEmits(['close', 'submit'])
 
     // Data
     const errors = ref({
         title: false,
         stampsNeeded: false,
+        duplicate: false,
     })
 
     const form = reactive({
@@ -97,12 +119,25 @@
         const isEmpty = value =>
             value === null || value === undefined || value === '';
 
+        // Errors
+        // Stamp # error
         if (form.stamps_needed < 1 || form.stamps_needed > 20) {
             errors.value.stampsNeeded = true;
         }
 
+        // No title
         if (isEmpty(form.title)) {
             errors.value.title = true;
+        }
+
+        // Duplicate title
+        const normalizedTitle = form.title.toLowerCase();
+        const isDuplicate = props.existingCards.some(card=>
+            card.title.toLowerCase() === normalizedTitle
+        );
+
+        if (isDuplicate) {
+            errors.value.duplicate = true;
         }
 
         if (Object.values(errors.value).some(error => error === true)) {
