@@ -1,17 +1,14 @@
 <template>
-    <!--
-        TODO:
-            - Truncate long card titles
-            - Add a search bar
-    -->
     <div
         class="stamp-card"
         @click="handleClick"
     >
         <div class="header">
-            <h3 class="title">
-                {{ card.title }}
-            </h3>
+            <div class="title-wrapper">
+                <h3 class="title">
+                    {{ card.title }}
+                </h3>
+            </div>
             <div class="actions">
                 <Button
                     label="Delete"
@@ -70,6 +67,15 @@
     .title {
         font-size: 1.1rem;
         font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .title-wrapper {
+        flex: 1;
+        min-width: 0;
+        margin-right: 1rem;
     }
 
     .stamps {
