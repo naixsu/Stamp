@@ -13,6 +13,11 @@
                 />
             </div>
 
+            <SearchBar
+                placeholder="Search stamp cards"
+                @update:searchKey="searchKey = $event"
+            />
+
             <div class="stamp-cards-list">
                 <StampCardSidebar
                     v-for="card in stampCards"
@@ -41,11 +46,13 @@
 </template>
 
 <script setup>
-    import { ref, onMounted } from 'vue'
+    import { ref, onMounted, watch } from 'vue'
     import axios from 'axios'
+    import debounce from 'debounce'
 
     // Generics
     import Button from './generics/Button.vue'
+    import SearchBar from './generics/SearchBar.vue'
 
     // Other components
     import StampCardSidebar from './main-stamps/StampCardSidebar.vue'
@@ -56,11 +63,24 @@
     const stampCards = ref([])
     const showModal = ref(false)
     const selectedCard = ref(null)
+    const searchKey = ref('')
 
+    // Debounced
+    const debouncedFetchCards = debounce((value) => {
+        fetchCards(value)
+    }, 300)
+
+    // Watch
+    watch(searchKey, (value) => {
+        debouncedFetchCards(value);
+    })
+
+    // onMounted
     onMounted(async () => {
         fetchCards();
     })
 
+    // Functions
     function handleAdd() {
         showModal.value = true;
     }
@@ -87,12 +107,17 @@
         }
     }
 
-    async function fetchCards() {
-        const { data } = await axios.get('http://localhost:8000/api/stamp-cards/')
-        stampCards.value = data;
+    // Async functions
+    async function fetchCards(search = '') {
+        const params = new URLSearchParams()
+        if (search) {
+            params.append('search', search)
+        }
 
-        // Updates the card inside `stampCards` for the sidebar
-        handleUpdateSelectedCard();
+        const { data } = await axios.get(`http://localhost:8000/api/stamp-cards/?${params}`)
+        stampCards.value = data
+
+        handleUpdateSelectedCard()
     }
 
     async function handleSubmit(data) {
