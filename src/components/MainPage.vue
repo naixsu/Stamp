@@ -1,6 +1,9 @@
 <template>
     <div class="main-layout">
         <!-- Sidebar Section -->
+        <!-- TODO
+            - Style the scrollbar
+        -->
         <div class="sidebar">
             <div class="sidebar-header">
                 <h2>Active Stamp Cards</h2>
@@ -13,19 +16,21 @@
                 />
             </div>
 
-            <SearchBar
-                placeholder="Search stamp cards"
-                @update:searchKey="searchKey = $event"
-            />
-
-            <div class="stamp-cards-list">
-                <StampCardSidebar
-                    v-for="card in stampCards"
-                    :key="card.pk"
-                    :card="card"
-                    @delete="handleDelete"
-                    @click="handleCardClick"
+            <div class="sidebar-scroll-wrapper">
+                <SearchBar
+                    placeholder="Search stamp cards"
+                    @update:searchKey="searchKey = $event"
                 />
+
+                <div class="stamp-cards-list">
+                    <StampCardSidebar
+                        v-for="card in stampCards"
+                        :key="card.pk"
+                        :card="card"
+                        @delete="handleDelete"
+                        @click="handleCardClick"
+                    />
+                </div>
             </div>
 
             <AddStampCardModal
@@ -182,17 +187,19 @@
 <style scoped>
     .main-layout {
         display: flex;
-        /* height: 100vh; */
+        height: 100%;
         overflow: hidden;
     }
 
     .sidebar {
+        display: flex;
+        flex-direction: column;
         width: 300px;
         background-color: var(--color-bg-dark);
-        color: white;
+        color: var(--color-text);
         padding: 1rem;
         box-sizing: border-box;
-        overflow-y: auto;
+        overflow: hidden;
     }
 
     .sidebar-header {
@@ -203,8 +210,21 @@
     }
 
     .stamp-cards-list {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 4px;
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        box-sizing: border-box;
+        padding-bottom: 2rem;
+        scrollbar-gutter: stable;
+    }
+
+    .sidebar-scroll-wrapper {
+        overflow-y: auto;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
     }
 </style>

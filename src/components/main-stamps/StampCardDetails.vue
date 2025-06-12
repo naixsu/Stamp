@@ -88,8 +88,9 @@
         flex: 1;
         padding: 1.5rem;
         background-color: var(--color-bg-dark);
-        color: white;
-        overflow-y: auto;
+        color: var(--color-text);
+        overflow: hidden;
+        height: 100%;
     }
 
     .actions {
@@ -109,7 +110,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
     }
 
     .stamp-row {
