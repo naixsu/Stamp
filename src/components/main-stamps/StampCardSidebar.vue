@@ -50,12 +50,21 @@
 </script>
 
 <style scoped>
-    .stamp-card {
+    /* .stamp-card {
         padding: 1rem;
         border-radius: 8px;
         background: var(--color-bg-medium);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+    } */
+
+    .stamp-card {
+        padding: 0.75rem;
+        border-radius: 6px;
+        background: var(--color-bg-medium);
+        margin-bottom: 0.75rem;
         cursor: pointer;
         transition: background 0.2s;
     }
@@ -65,7 +74,8 @@
     }
 
     .title {
-        font-size: 1.1rem;
+        /* font-size: 1.1rem; */
+        font-size: 1rem; /* slightly smaller font */
         font-weight: bold;
         white-space: nowrap;
         overflow: hidden;
@@ -79,8 +89,11 @@
     }
 
     .stamps {
-        color: #ccc;
-        margin-top: 0.5rem;
+        /* color: #ccc;
+        margin-top: 0.5rem; */
+        font-size: 0.875rem;
+        color: #bbb;
+        margin-top: 0.25rem;
     }
 
     .header {

@@ -9,12 +9,17 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  /* Main */
   --color-bg-dark: #1b2d48;
   --color-bg-medium: #2c456b;
   --color-primary: #3c649f;
   --color-accent: #4779c4;
   --color-highlight: #83aff0;
   --color-disabled: #03396c;
+
+  /* Danger */
+  --color-danger: #9e2c51;
+  --color-danger-hover: #7a2340;
 
   /* --color-bg-dark: #011f4b;
   --color-bg-medium: #03396c;

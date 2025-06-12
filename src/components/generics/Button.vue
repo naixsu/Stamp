@@ -111,12 +111,12 @@
     }
 
     .btn-danger {
-        background: #ED2B42;
+        background: var(--color-danger);
         color: white;
     }
 
     .btn-danger:hover {
-        background: #c82333;
+        background: var(--color-danger-hover);
     }
 
     .btn:disabled {

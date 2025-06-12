@@ -80,10 +80,13 @@ async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
-    minHeight: 720,
     // TOOD: Figure this out
-    minWidth: 1200,
-    // resizable: false,
+    // Setting `width` and `height` whenever `resizable` is `false`.
+    // minHeight: 720,
+    // minWidth: 900,
+    width: 900,
+    height: 720,
+    resizable: false,
     fullscreen: false,
     webPreferences: {
       preload,
@@ -99,7 +102,7 @@ async function createWindow() {
   if (VITE_DEV_SERVER_URL) { // #298
     win.loadURL(VITE_DEV_SERVER_URL)
     // Open devTool if the app is not packaged
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
   } else {
     win.loadFile(indexHtml)
   }

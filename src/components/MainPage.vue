@@ -139,7 +139,19 @@
         } catch (error) {
             console.error(`Failed to delete stamp card ${cardPk}`, error);
         } finally {
+            const index = stampCards.value.findIndex(card => card.pk === cardPk)
             await fetchCards();
+
+            // Switch `selectedCard` to an available card
+            if (selectedCard.value?.pk === cardPk) {
+                if (index > 0) {
+                    selectedCard.value = stampCards.value[index - 1]
+                } else if (stampCards.value.length > 0) {
+                    selectedCard.value = stampCards.value[0]
+                } else {
+                    selectedCard.value = null
+                }
+            }
         }
     }
 
@@ -170,7 +182,7 @@
 <style scoped>
     .main-layout {
         display: flex;
-        height: 100vh;
+        /* height: 100vh; */
         overflow: hidden;
     }
 
