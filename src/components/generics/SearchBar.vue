@@ -53,7 +53,7 @@
         box-sizing: border-box;
 
          /* handling the scrollbar space */
-        margin-right: 18px;
+        margin-right: 21px;
     }
 
     .search-input {

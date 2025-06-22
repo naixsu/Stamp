@@ -1,10 +1,12 @@
 <template>
-    <MainPage />
+    <!-- <MainPage /> -->
+    <Test />
 </template>
 
 
 <script setup>
-    import MainPage from './components/MainPage.vue';
+    // import MainPage from './components/MainPage.vue';
+    import Test from './components/Test.vue';
 </script>
 
 
@@ -12,5 +14,16 @@
     html, body, #app {
         height: 100%;
         overflow: hidden;
+        margin: 0;
+        box-sizing: border-box;
     }
+
+    *, *::before, *::after {
+        box-sizing: inherit;
+    }
+
+    #app {
+        padding: 1rem;
+    }
+
 </style>

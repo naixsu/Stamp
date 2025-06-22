@@ -45,14 +45,14 @@
   background-color: var(--color-bg-dark);
 }
 
-a {
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
-}
+} */
 
 /* body {
   margin: 0;
@@ -86,25 +86,25 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
 
-code {
+/* code {
   background-color: #1a1a1a;
   padding: 2px 4px;
   margin: 0 4px;
   border-radius: 4px;
-}
+} */
 
-.card {
+/* .card {
   padding: 2em;
-}
+} */
 
-#app {
+/* #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} */
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -118,4 +118,4 @@ code {
   code {
     background-color: #f9f9f9;
   }
-}
+} */
