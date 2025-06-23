@@ -1,12 +1,12 @@
 <template>
-    <!-- <MainPage /> -->
-    <TestTwo />
+    <MainPage />
+    <!-- <TestTwo /> -->
 </template>
 
 
 <script setup>
-    // import MainPage from './components/MainPage.vue';
-    import TestTwo from './components/TestTwo.vue';
+    import MainPage from './components/MainPage.vue';
+    // import TestTwo from './components/TestTwo.vue';
 
 </script>
 
@@ -14,7 +14,7 @@
 <style>
     html, body, #app {
         height: 100%;
-        overflow: hidden;
+        /* overflow: hidden; */
         margin: 0;
         box-sizing: border-box;
     }

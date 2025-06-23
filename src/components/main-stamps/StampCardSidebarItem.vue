@@ -1,6 +1,7 @@
 <template>
     <div
         class="stamp-card"
+        :class="{ active: props.isActive }"
         @click="handleClick"
     >
         <div class="stamp-card-info">
@@ -28,6 +29,10 @@
 
     const props = defineProps({
         card: Object,
+        isActive: {
+            type: Boolean,
+            default: false,
+        },
     })
 
     const emit = defineEmits(['delete', 'click'])
@@ -51,7 +56,8 @@
 <style scoped>
     .stamp-card {
         /* background-color: var(--color-primary); */
-        background-color: var(--color-accent-two);
+        /* background-color: var(--color-accent-two); */
+        background-color: var(--color-sidebar-item-buttons);
         padding: 0.6rem;
         border-radius: 0.5rem;
         display: flex;
@@ -65,6 +71,10 @@
     .stamp-card:hover {
         /* background-color: var(--color-highlight); */
         background-color: var(--color-highlight-two);
+    }
+
+    .stamp-card.active {
+        background-color: var(--color-active);
     }
 
     /* TODO: Figure this transform hover out maybe */

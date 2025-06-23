@@ -37,7 +37,6 @@
             </div>
             <div class="stamps">
                 <StampEntry
-                    class="stamp"
                     v-for="entry in props.card.entries"
                     :key="entry.pk"
                     :disabled="entry.is_active"
@@ -46,6 +45,16 @@
                 />
             </div>
         </div>
+        <div class="notes-wrapper">
+            <h3>
+                Notes
+            </h3>
+            <div class="notes">
+                Placeholder notes here. Need to add field in the backend.
+                Also add icon types
+            </div>
+        </div>
+
     </div>
 
 </template>
@@ -88,12 +97,8 @@
 <style scoped>
     .details-panel {
         flex-grow: 1;
-        /* background-color: var(--color-details); */
-        /* background-color: var(--color-primary-one); */
-        background-color: var(--color-accent-two);
-        /* background-color: var(--color-bg-medium-one); */
+        background-color: var(--color-details);
         padding: 2rem;
-        color: var(--color-text);
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
@@ -138,11 +143,12 @@
     }
 
     .stamp-wrapper {
-        /* background-color: var(--color-bg-medium); */
-        background-color: var(--color-primary-two);
+        background-color: var(--color-wrapper);
         padding: 1rem;
         border-radius: 1rem;
-        height: 100%;
+        height: 50vh;
+        box-shadow: 0 2px 10px var(--color-wrapper-shadow);
+        position: relative;
     }
 
     .stamps {
@@ -151,23 +157,24 @@
         gap: 1rem;
     }
 
-    .stamp {
-        width: 50px;
-        height: 50px;
-        background-color: var(--color-accent);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .notes-wrapper {
+        margin-top: 2rem;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        background-color: var(--color-wrapper);
         color: var(--color-text);
-        font-size: 1.5rem;
-        transition: transform 0.2s ease;
-        margin: 0 auto;
+        box-shadow: 0 2px 10px var(--color-wrapper-shadow);
     }
 
-    .stamp:hover {
-        transform: scale(1.1);
-        background-color: var(--color-highlight);
-        color: var(--color-disabled);
+    .notes-wrapper h3 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .notes {
+        border-radius: 0.5rem;
+        min-height: 3rem;
+        font-size: 0.95rem;
+        line-height: 1.4;
     }
 </style>

@@ -7,7 +7,7 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <h2 class="sidebar-title">
-                    Active Stamp Cards
+                    Stamp Cards
                 </h2>
                 <!-- Todo here .add-btn -->
                 <Button
@@ -31,6 +31,7 @@
                     v-for="card in stampCards"
                     :key="card.pk"
                     :card="card"
+                    :is-active="card.pk === selectedCard?.pk"
                     @delete="handleDelete"
                     @click="handleCardClick"
                 />
@@ -200,7 +201,8 @@
         width: 280px;
         /* background-color: var(--color-bg-medium); */
         /* background-color: var(--color-bg-medium-one); */
-        background-color: var(--color-primary-two);
+        /* background-color: var(--color-primary-two); */
+        background-color: var(--color-sidebar);
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -218,7 +220,8 @@
 
     .sidebar-title {
         /* color: var(--color-highlight); */
-        color: var(--color-text-two);
+        /* color: var(--color-text-two); */
+        color: var(--color-text);
         font-size: 1.2rem;
         text-align: center;
     }
@@ -235,12 +238,16 @@
     }
 
     .sidebar-list::-webkit-scrollbar-track {
-        background: transparent;
+        /* background: transparent; */
+        background-color: var(--color-text-two);
     }
 
     .sidebar-list::-webkit-scrollbar-thumb {
         /* background-color: var(--color-highlight); */
-        background-color: var(--color-text-two);
+        /* background-color: var(--color-text-two); */
+        /* background-color: var(--color-text-two); */
+        /* background-color: var(--color-bg-dark-one); */
+        background-color: var(--color-text);
         border-radius: 3px;
     }
 
