@@ -55,22 +55,18 @@
 
 <style scoped>
     .stamp-card {
-        /* background-color: var(--color-primary); */
-        /* background-color: var(--color-accent-two); */
         background-color: var(--color-sidebar-item-buttons);
         padding: 0.6rem;
         border-radius: 0.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        color: var(--color-text);
         cursor: pointer;
         transition: background-color 0.2s ease;
     }
 
     .stamp-card:hover {
-        /* background-color: var(--color-highlight); */
-        background-color: var(--color-highlight-two);
+        background-color: var(--color-hover);
     }
 
     .stamp-card.active {

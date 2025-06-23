@@ -46,6 +46,7 @@
             secondary: 'btn-secondary',
             success: 'btn-success',
             danger: 'btn-danger',
+            sidebar: 'btn-sidebar-item',
         }[props.color]
     })
 </script>
@@ -84,52 +85,45 @@
 
     /* Colors */
     .btn-primary {
-        /* background: var(--color-primary); */
-        background: var(--color-accent-two);
-        color: white;
+        background-color: var(--color-primary);
+        color: var(--color-white-text);
     }
 
     .btn-primary:hover {
-        /* background: var(--color-accent); */
-        background: var(--color-highlight-two);
-    }
-
-    .btn-secondary {
-        background: var(--color-bg-medium);
-        color: white;
-    }
-
-    .btn-secondary:hover {
-        background: var(--color-primary);
+        background-color: var(--color-primary-hover);
     }
 
     .btn-success {
-        /* background: var(--color-highlight); */
-        background: var(--color-highlight-two);
-        color: black;
+        background-color: var(--color-success);
+        color: var(--color-white-text);
     }
 
     .btn-success:hover {
-        /* background: var(--color-accent); */
-        /* background: var(--color-highlight-two); */
-        background: var(--color-accent-one);
+        background-color: var(--color-hover);
     }
 
     .btn-danger {
-        background: var(--color-danger);
-        color: white;
+        background-color: var(--color-danger);
+        color: var(--color-white-text);
     }
 
     .btn-danger:hover {
-        background: var(--color-danger-hover);
+        background-color: var(--color-danger-hover);
     }
 
     .btn:disabled {
-        /* background: var(--color-disabled); */
-        /* background: var(--color-disabled-two); */
-        background: var(--color-primary-one);
-        color: white;
+        background-color: var(--color-disabled);
+        color: var(--color-white-text);
         border-color: #E4E7E8;
         cursor: not-allowed;
+    }
+
+    .btn-sidebar-item {
+        background-color: var(--color-sidebar-item-buttons);
+        color: var(--color-white-text);
+    }
+
+    .btn-sidebar-item:hover {
+        background-color: var(--color-hover);
     }
 </style>

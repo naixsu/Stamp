@@ -10,142 +10,26 @@
   -webkit-text-size-adjust: 100%;
 
   /* Main */
-  --color-bg-dark: #1b2d48;
-  --color-bg-medium: #2c456b;
-  --color-primary: #3c649f;
-  --color-accent: #4779c4;
-  --color-highlight: #83aff0;
-  --color-details: #03396c;
-  --color-disabled: #032341;
-
-
-  /* New colors */
-  --color-bg-dark-one: #304674;
-  --color-bg-medium-one: #98bad5;
-  --color-primary-one: #b2cbde;
-  --color-accent-one: #c6d3e3;
-  --color-highlight-one: #d8e1e8;
-
-  --color-disabled-two: #4b5c61;
-  --color-primary-two: #3d6ea2;
-  --color-accent-two: #78a7d5;
-  --color-highlight-two: #a3cae6;
-  --color-text-two: #edeaed;
-
-  /* Danger */
-  --color-danger: #9e2c51;
-  --color-danger-hover: #7a2340;
-
-  /* --color-bg-dark: #011f4b;
-  --color-bg-medium: #03396c;
-  --color-primary: #005b96;
-  --color-accent: #6497b1;
-  --color-highlight: #b3cde0;
-
-  --color-bg-dark: #50b8e7;
-  --color-bg-medium: #84cdee;
-  --color-primary: #b9e2f5;
-  --color-accent: #dcf0fa;
-  --color-highlight: #edf7fc;
-
-  --color-bg-dark: #9fb3df;
-  --color-bg-medium: #9ec6f3;
-  --color-primary: #bddde4;
-  --color-accent: #fff1d5; */
-
-  --color-text: #ffffff;
-
-  /* color-scheme: dark; */
-  /* color: var(--color-text); */
-  /* background-color: var(--color-bg-dark); */
-  /* background-color: var(--color-bg-dark-one); this is for MainPage.vue */
-
-  /* This is for TestTwo.vue */
   background-color: #deedfa;
+  color: var(--color-text);
+
   --color-sidebar: #a5ccea;
+  --color-primary: #78a7d5;
+  --color-primary-hover: #9ec6f3;
+  --color-disabled: #b3cde0;
   --color-sidebar-item-buttons: #98c1df;
+  --color-white-text: white;
   --color-details: #e7f3fe;
   --color-wrapper: #ebf6fe;
   --color-wrapper-shadow: #a3cae6;
+  --color-hover: #b9e2f5;
   --color-active: #e6f4ff;
   --color-icon: #9dc8e8;
   --color-icon-border: #3d6ea2;
   --color-text: #2d6190;
-
-  color: var(--color-text);
+  --color-success: #a5ccea;
+  
+  /* Danger */
+  --color-danger: #9e2c51;
+  --color-danger-hover: #7a2340;
 }
-
-/* a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-} */
-
-/* body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
-
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-} */
-
-/* button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
-/* code {
-  background-color: #1a1a1a;
-  padding: 2px 4px;
-  margin: 0 4px;
-  border-radius: 4px;
-} */
-
-/* .card {
-  padding: 2em;
-} */
-
-/* #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
-
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-  code {
-    background-color: #f9f9f9;
-  }
-} */

@@ -162,7 +162,6 @@
         padding: 1rem;
         border-radius: 0.75rem;
         background-color: var(--color-wrapper);
-        color: var(--color-text);
         box-shadow: 0 2px 10px var(--color-wrapper-shadow);
     }
 

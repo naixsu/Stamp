@@ -1,20 +1,16 @@
 <template>
     <div class="main-layout">
         <!-- Sidebar Section -->
-        <!-- TODO
-            - Style the scrollbar
-        -->
         <div class="sidebar">
             <div class="sidebar-header">
                 <h2 class="sidebar-title">
                     Stamp Cards
                 </h2>
-                <!-- Todo here .add-btn -->
                 <Button
                     label="Add"
                     icon="plus"
                     size="medium"
-                    color="primary"
+                    color="sidebar"
                     @click="handleAdd"
                 />
             </div>
@@ -199,9 +195,6 @@
     /* Sidebar */
     .sidebar {
         width: 280px;
-        /* background-color: var(--color-bg-medium); */
-        /* background-color: var(--color-bg-medium-one); */
-        /* background-color: var(--color-primary-two); */
         background-color: var(--color-sidebar);
         padding: 1rem;
         display: flex;
@@ -219,9 +212,6 @@
     }
 
     .sidebar-title {
-        /* color: var(--color-highlight); */
-        /* color: var(--color-text-two); */
-        color: var(--color-text);
         font-size: 1.2rem;
         text-align: center;
     }
@@ -238,15 +228,10 @@
     }
 
     .sidebar-list::-webkit-scrollbar-track {
-        /* background: transparent; */
         background-color: var(--color-text-two);
     }
 
     .sidebar-list::-webkit-scrollbar-thumb {
-        /* background-color: var(--color-highlight); */
-        /* background-color: var(--color-text-two); */
-        /* background-color: var(--color-text-two); */
-        /* background-color: var(--color-bg-dark-one); */
         background-color: var(--color-text);
         border-radius: 3px;
     }
