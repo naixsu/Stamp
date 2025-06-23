@@ -198,7 +198,9 @@
     /* Sidebar */
     .sidebar {
         width: 280px;
-        background-color: var(--color-bg-medium);
+        /* background-color: var(--color-bg-medium); */
+        /* background-color: var(--color-bg-medium-one); */
+        background-color: var(--color-primary-two);
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -215,7 +217,8 @@
     }
 
     .sidebar-title {
-        color: var(--color-highlight);
+        /* color: var(--color-highlight); */
+        color: var(--color-text-two);
         font-size: 1.2rem;
         text-align: center;
     }
@@ -236,7 +239,8 @@
     }
 
     .sidebar-list::-webkit-scrollbar-thumb {
-        background-color: var(--color-highlight);
+        /* background-color: var(--color-highlight); */
+        background-color: var(--color-text-two);
         border-radius: 3px;
     }
 

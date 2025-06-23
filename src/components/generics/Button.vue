@@ -84,12 +84,14 @@
 
     /* Colors */
     .btn-primary {
-        background: var(--color-primary);
+        /* background: var(--color-primary); */
+        background: var(--color-accent-two);
         color: white;
     }
 
     .btn-primary:hover {
-        background: var(--color-accent);
+        /* background: var(--color-accent); */
+        background: var(--color-highlight-two);
     }
 
     .btn-secondary {
@@ -102,12 +104,15 @@
     }
 
     .btn-success {
-        background: var(--color-highlight);
+        /* background: var(--color-highlight); */
+        background: var(--color-highlight-two);
         color: black;
     }
 
     .btn-success:hover {
-        background: var(--color-accent);
+        /* background: var(--color-accent); */
+        /* background: var(--color-highlight-two); */
+        background: var(--color-accent-one);
     }
 
     .btn-danger {
@@ -120,7 +125,9 @@
     }
 
     .btn:disabled {
-        background: var(--color-disabled);
+        /* background: var(--color-disabled); */
+        /* background: var(--color-disabled-two); */
+        background: var(--color-primary-one);
         color: white;
         border-color: #E4E7E8;
         cursor: not-allowed;

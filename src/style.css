@@ -15,7 +15,22 @@
   --color-primary: #3c649f;
   --color-accent: #4779c4;
   --color-highlight: #83aff0;
-  --color-disabled: #03396c;
+  --color-details: #03396c;
+  --color-disabled: #032341;
+
+
+  /* New colors */
+  --color-bg-dark-one: #304674;
+  --color-bg-medium-one: #98bad5;
+  --color-primary-one: #b2cbde;
+  --color-accent-one: #c6d3e3;
+  --color-highlight-one: #d8e1e8;
+
+  --color-disabled-two: #4b5c61;
+  --color-primary-two: #3d6ea2;
+  --color-accent-two: #78a7d5;
+  --color-highlight-two: #a3cae6;
+  --color-text-two: #edeaed;
 
   /* Danger */
   --color-danger: #9e2c51;
@@ -42,7 +57,8 @@
 
   color-scheme: dark;
   color: var(--color-text);
-  background-color: var(--color-bg-dark);
+  /* background-color: var(--color-bg-dark); */
+  background-color: var(--color-bg-dark-one);
 }
 
 /* a {

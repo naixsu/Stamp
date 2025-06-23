@@ -88,7 +88,10 @@
 <style scoped>
     .details-panel {
         flex-grow: 1;
-        background-color: var(--color-disabled);
+        /* background-color: var(--color-details); */
+        /* background-color: var(--color-primary-one); */
+        background-color: var(--color-accent-two);
+        /* background-color: var(--color-bg-medium-one); */
         padding: 2rem;
         color: var(--color-text);
         display: flex;
@@ -105,18 +108,6 @@
         align-items: center;
         margin-bottom: 1.5rem;
         flex-wrap: wrap;
-    }
-
-    .stamp-grid-wrapper {
-        position: relative;
-        margin-top: 1rem;
-        background-color: var(--color-bg-medium);
-        padding: 1rem;
-        border-radius: 10px;
-        aspect-ratio: 1 / 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .stamp-row {
@@ -147,7 +138,8 @@
     }
 
     .stamp-wrapper {
-        background-color: var(--color-bg-medium);
+        /* background-color: var(--color-bg-medium); */
+        background-color: var(--color-primary-two);
         padding: 1rem;
         border-radius: 1rem;
         height: 100%;

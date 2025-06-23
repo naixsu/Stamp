@@ -48,7 +48,7 @@
     .search-bar {
         display: flex;
         align-items: center;
-        background-color: var(--color-primary);
+        background-color: var(--color-accent-two);
         padding: 0.5rem 0.75rem;
         border-radius: 8px;
         gap: 0.5rem;
@@ -71,7 +71,7 @@
     }
 
     .search-input::placeholder {
-        color: var(--color-text);
-        opacity: 0.6;
+        color: var(--color-text-two);
+        /* opacity: 0.6; */
     }
 </style>

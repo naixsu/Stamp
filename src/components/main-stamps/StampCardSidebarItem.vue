@@ -50,7 +50,8 @@
 
 <style scoped>
     .stamp-card {
-        background-color: var(--color-primary);
+        /* background-color: var(--color-primary); */
+        background-color: var(--color-accent-two);
         padding: 0.6rem;
         border-radius: 0.5rem;
         display: flex;
@@ -62,7 +63,8 @@
     }
 
     .stamp-card:hover {
-        background-color: var(--color-highlight);
+        /* background-color: var(--color-highlight); */
+        background-color: var(--color-highlight-two);
     }
 
     /* TODO: Figure this transform hover out maybe */
