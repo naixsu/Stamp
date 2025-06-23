@@ -1,8 +1,10 @@
 <template>
     <!--
         TODO:
-            - Handle color variables in different files
             - Handle max char length for card titles
+            - Make modal better
+            - Add notes field
+            - Add icon types for notes
     -->
     <div class="modal-overlay">
         <div class="modal">
@@ -26,13 +28,13 @@
                         @focus="
                             errors.title = false;
                             errors.duplicate = false;
-                        "
+                            "
                     />
                     <p
                         v-if="errors.title"
                         class="message"
                     >
-                        Tite is required.
+                        Title is required.
                     </p>
                     <p
                         v-if="errors.duplicate"
@@ -163,7 +165,7 @@
     .modal-overlay {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -171,57 +173,65 @@
     }
 
     .modal {
-        background: var(--color-bg-medium);
-        color: var(--color-text);
+        background: var(--color-primary);
         padding: 2rem;
-        border-radius: 10px;
+        border-radius: 12px;
         width: 100%;
-        max-width: 350px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        max-width: 360px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        color: var(--color-text);
     }
 
     .modal-title {
-        margin-bottom: 1.25rem;
-        font-size: 1.25rem;
-        font-weight: bold;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 600;
         text-align: center;
     }
 
     .form-group {
-        margin-bottom: 1rem;
+        margin-bottom: 1.25rem;
     }
 
     label {
         display: block;
-        margin-bottom: 0.35rem;
-        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--color-white-text);
     }
 
     input {
-        box-sizing: border-box;
         width: 100%;
         padding: 0.5rem 0.75rem;
         font-size: 0.95rem;
         border-radius: 6px;
-        background: var(--color-bg-dark);
-        border: 1px solid var(--color-accent);
+        border: 1px solid var(--color-icon-border);
+        background-color: var(--color-wrapper);
         color: var(--color-text);
+        transition: border-color 0.2s ease;
     }
 
     input::placeholder {
-        color: #888;
+        color: var(--color-text);
+    }
+
+    input:focus {
+        outline: none;
+        border-color: var(--color-primary-hover);
+        background-color: var(--color-hover);
     }
 
     input.invalid {
-        border-color: #ED2B42;
-        box-shadow: 0 0 0 4px rgba(#ED2B42, .25);
+        border-color: var(--color-danger);
+        background-color: #fff0f3;
     }
 
     .modal-actions {
         display: flex;
         justify-content: flex-end;
-        gap: 0.5rem;
-        margin-top: 1rem;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
     }
 
     .error-container {
@@ -229,12 +239,10 @@
         flex-direction: column;
     }
 
-    .error-container .message {
-        display: flex;
-        align-items: center;
-        color: #ED2B42;
-        font-size: 12px;
-        line-height: 1.5;
-        letter-spacing: 0;
+    .message {
+        color: var(--color-danger);
+        font-size: 0.8rem;
+        margin-top: 0.3rem;
+        padding-left: 0.25rem;
     }
 </style>

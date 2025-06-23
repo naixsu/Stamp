@@ -5,10 +5,10 @@
     -->
     <div class="search-bar">
         <input
+            class="search-input"
             v-model.trim="searchKey"
             :placeholder="placeholder"
             type="text"
-            class="search-input"
         />
         <Button
             v-if="searchKey"

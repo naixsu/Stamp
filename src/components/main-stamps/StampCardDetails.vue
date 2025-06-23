@@ -3,17 +3,22 @@
         TODO:
             - Truncate long card titles if ever we dont
                 handle max char length on making cards
-            - Ignore cursors if redeemed
     -->
     <div
         v-if="props.card"
         class="details-panel"
+        :class="{ 'redeemed': isCardRedeemed }"
     >
+        <div
+            v-if="isCardRedeemed"
+            class="redeemed-overlay"
+        >
+            Redeemed
+        </div>
         <div class="details-header">
             <h2>
                 {{ props.card.title }}
             </h2>
-            <!-- TODO: .complete-btn -->
             <Button
                 label="Mark as complete"
                 icon="pencil-outline"
@@ -27,14 +32,7 @@
         <!-- This is the square wrapper for the stamp entries -->
         <div
             class="stamp-wrapper"
-            :class="{ 'redeemed': isCardRedeemed }"
         >
-            <div
-                v-if="isCardRedeemed"
-                class="redeemed-overlay"
-            >
-                Redeemed
-            </div>
             <div class="stamps">
                 <StampEntry
                     v-for="entry in props.card.entries"
@@ -107,6 +105,14 @@
         position: relative;
     }
 
+    .details-panel.redeemed {
+        cursor: default;
+    }
+
+    .details-panel.redeemed * {
+        cursor: default !important;
+    }
+
     .details-header {
         display: flex;
         justify-content: space-between;
@@ -130,7 +136,7 @@
         width: 100%;
         height: 100%;
         background-color: rgba(15, 15, 15, 0.7);
-        color: var(--color-text);
+        color: var(--color-white-text);
         font-size: 1.8rem;
         font-weight: bold;
         display: flex;
@@ -149,16 +155,20 @@
         height: 50vh;
         box-shadow: 0 2px 10px var(--color-wrapper-shadow);
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .stamps {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 1rem;
+        width: 100%;
     }
 
     .notes-wrapper {
-        margin-top: 2rem;
+        margin-top: 1rem;
         padding: 1rem;
         border-radius: 0.75rem;
         background-color: var(--color-wrapper);
