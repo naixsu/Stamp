@@ -1,18 +1,19 @@
 <template>
     <!--
         TODO:
-            - When card is deleted, the details will still show,
-                Add something like a 'No card selected' empty state
-            - Improve the stamp-grid-wrapper class
             - Truncate long card titles if ever we dont
                 handle max char length on making cards
+            - Ignore cursors if redeemed
     -->
     <div
         v-if="props.card"
         class="details-panel"
     >
-        <h3>{{ props.card.title }}</h3>
-        <div class="actions">
+        <div class="details-header">
+            <h2>
+                {{ props.card.title }}
+            </h2>
+            <!-- TODO: .complete-btn -->
             <Button
                 label="Mark as complete"
                 icon="pencil-outline"
@@ -25,7 +26,7 @@
 
         <!-- This is the square wrapper for the stamp entries -->
         <div
-            class="stamp-grid-wrapper"
+            class="stamp-wrapper"
             :class="{ 'redeemed': isCardRedeemed }"
         >
             <div
@@ -34,8 +35,9 @@
             >
                 Redeemed
             </div>
-            <div class="stamp-row">
+            <div class="stamps">
                 <StampEntry
+                    class="stamp"
                     v-for="entry in props.card.entries"
                     :key="entry.pk"
                     :disabled="entry.is_active"
@@ -85,19 +87,24 @@
 
 <style scoped>
     .details-panel {
-        flex: 1;
-        padding: 1.5rem;
-        background-color: var(--color-bg-dark);
+        flex-grow: 1;
+        background-color: var(--color-disabled);
+        padding: 2rem;
         color: var(--color-text);
-        overflow: hidden;
-        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        position: relative;
     }
 
-    .actions {
+    .details-header {
         display: flex;
-        justify-content: flex-end;
-        gap: 0.5rem;
-        margin-top: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
     }
 
     .stamp-grid-wrapper {
@@ -127,7 +134,7 @@
         width: 100%;
         height: 100%;
         background-color: rgba(15, 15, 15, 0.7);
-        color: #a7abc4;
+        color: var(--color-text);
         font-size: 1.8rem;
         font-weight: bold;
         display: flex;
@@ -135,5 +142,40 @@
         justify-content: center;
         z-index: 1;
         pointer-events: none;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+
+    .stamp-wrapper {
+        background-color: var(--color-bg-medium);
+        padding: 1rem;
+        border-radius: 1rem;
+        height: 100%;
+    }
+
+    .stamps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+    }
+
+    .stamp {
+        width: 50px;
+        height: 50px;
+        background-color: var(--color-accent);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-text);
+        font-size: 1.5rem;
+        transition: transform 0.2s ease;
+        margin: 0 auto;
+    }
+
+    .stamp:hover {
+        transform: scale(1.1);
+        background-color: var(--color-highlight);
+        color: var(--color-disabled);
     }
 </style>

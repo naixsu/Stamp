@@ -1,4 +1,8 @@
 <template>
+    <!--
+        TODO:
+        - Add EmptyState
+    -->
     <div class="search-bar">
         <input
             v-model.trim="searchKey"
@@ -44,24 +48,30 @@
     .search-bar {
         display: flex;
         align-items: center;
-        background-color: var(--color-bg-medium);
+        background-color: var(--color-primary);
         padding: 0.5rem 0.75rem;
         border-radius: 8px;
-        margin-bottom: 1rem;
         gap: 0.5rem;
         min-height: 3rem;
         box-sizing: border-box;
-
-         /* handling the scrollbar space */
-        margin-right: 21px;
+        /* handling the scrollbar space */
+        /* margin-right: 21px; */
     }
 
     .search-input {
         flex: 1;
         background: transparent;
         border: none;
-        color: white;
         font-size: 1rem;
         outline: none;
+        color: var(--color-text);
+        max-width: calc(100% - 2rem);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .search-input::placeholder {
+        color: var(--color-text);
+        opacity: 0.6;
     }
 </style>

@@ -6,7 +6,10 @@
         -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h2>Active Stamp Cards</h2>
+                <h2 class="sidebar-title">
+                    Active Stamp Cards
+                </h2>
+                <!-- Todo here .add-btn -->
                 <Button
                     label="Add"
                     icon="plus"
@@ -16,21 +19,21 @@
                 />
             </div>
 
-            <div class="sidebar-scroll-wrapper">
+            <div class="sidebar-controls">
                 <SearchBar
                     placeholder="Search stamp cards"
                     @update:searchKey="searchKey = $event"
                 />
+            </div>
 
-                <div class="stamp-cards-list">
-                    <StampCardSidebar
-                        v-for="card in stampCards"
-                        :key="card.pk"
-                        :card="card"
-                        @delete="handleDelete"
-                        @click="handleCardClick"
-                    />
-                </div>
+            <div class="sidebar-list">
+                <StampCardSidebarItem
+                    v-for="card in stampCards"
+                    :key="card.pk"
+                    :card="card"
+                    @delete="handleDelete"
+                    @click="handleCardClick"
+                />
             </div>
 
             <AddStampCardModal
@@ -61,7 +64,7 @@
     import SearchBar from './generics/SearchBar.vue'
 
     // Other components
-    import StampCardSidebar from './main-stamps/StampCardSidebar.vue'
+    import StampCardSidebarItem from './main-stamps/StampCardSidebarItem.vue'
     import AddStampCardModal from './main-stamps/AddStampCardModal.vue'
     import StampCardDetails from './main-stamps/StampCardDetails.vue'
 
@@ -187,44 +190,61 @@
 <style scoped>
     .main-layout {
         display: flex;
-        height: 100%;
         overflow: hidden;
+        font-family: sans-serif;
+        height: 100%;
     }
 
+    /* Sidebar */
     .sidebar {
+        width: 280px;
+        background-color: var(--color-bg-medium);
+        padding: 1rem;
         display: flex;
         flex-direction: column;
-        width: 300px;
-        background-color: var(--color-bg-dark);
-        color: var(--color-text);
-        padding: 1rem;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
         box-sizing: border-box;
-        overflow: hidden;
     }
 
     .sidebar-header {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         margin-bottom: 1rem;
     }
 
-    .stamp-cards-list {
-        flex: 1;
-        overflow-y: auto;
-        padding-right: 4px;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        box-sizing: border-box;
-        padding-bottom: 2rem;
-        scrollbar-gutter: stable;
+    .sidebar-title {
+        color: var(--color-highlight);
+        font-size: 1.2rem;
+        text-align: center;
     }
 
-    .sidebar-scroll-wrapper {
-        overflow-y: auto;
-        flex: 1;
+    .sidebar-controls {
         display: flex;
         flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .sidebar-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .sidebar-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .sidebar-list::-webkit-scrollbar-thumb {
+        background-color: var(--color-highlight);
+        border-radius: 3px;
+    }
+
+    .sidebar-list {
+        flex-grow: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 </style>

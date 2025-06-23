@@ -1,12 +1,10 @@
 <template>
-    <!-- <MainPage /> -->
-    <Test />
+    <MainPage />
 </template>
 
 
 <script setup>
-    // import MainPage from './components/MainPage.vue';
-    import Test from './components/Test.vue';
+    import MainPage from './components/MainPage.vue';
 </script>
 
 
