@@ -67,9 +67,14 @@
         max-width: calc(100% - 2rem);
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: var(--color-text);
     }
 
     .search-input::placeholder {
         color: var(--color-text);
+    }
+
+    .search-bar :deep(.btn) {
+        margin-left: -0.25rem;
     }
 </style>

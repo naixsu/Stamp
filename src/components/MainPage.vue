@@ -23,14 +23,24 @@
             </div>
 
             <div class="sidebar-list">
-                <StampCardSidebarItem
-                    v-for="card in stampCards"
-                    :key="card.pk"
-                    :card="card"
-                    :is-active="card.pk === selectedCard?.pk"
-                    @delete="handleDelete"
-                    @click="handleCardClick"
-                />
+                <template v-if="stampCards.length > 0">
+                    <StampCardSidebarItem
+                        v-for="card in stampCards"
+                        :key="card.pk"
+                        :card="card"
+                        :is-active="card.pk === selectedCard?.pk"
+                        @delete="handleDelete"
+                        @click="handleCardClick"
+                    />
+                </template>
+                <template v-else>
+                    <EmptyState
+                        v-if="!isFetching"
+                        icon="card-off"
+                        size="large"
+                        :primary-text="emptyStateMessage"
+                    />
+                </template>
             </div>
 
             <AddStampCardModal
@@ -52,13 +62,14 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, watch } from 'vue'
+    import { ref, onMounted, watch, computed } from 'vue'
     import axios from 'axios'
     import debounce from 'debounce'
 
     // Generics
     import Button from './generics/Button.vue'
     import SearchBar from './generics/SearchBar.vue'
+    import EmptyState from './generics/EmptyState.vue'
 
     // Other components
     import StampCardSidebarItem from './main-stamps/StampCardSidebarItem.vue'
@@ -70,6 +81,7 @@
     const showModal = ref(false)
     const selectedCard = ref(null)
     const searchKey = ref('')
+    const isFetching = ref(false)
 
     // Debounced
     const debouncedFetchCards = debounce((value) => {
@@ -78,12 +90,20 @@
 
     // Watch
     watch(searchKey, (value) => {
+        isFetching.value = true;
         debouncedFetchCards(value);
     })
 
     // onMounted
     onMounted(async () => {
         fetchCards();
+    })
+
+    // Computed
+    const emptyStateMessage = computed(() => {
+        return searchKey.value
+            ? `No stamp cards found matching "${searchKey.value}."`
+            : 'No stamp cards available. Add a new one to get started.';
     })
 
     // Functions
@@ -115,15 +135,20 @@
 
     // Async functions
     async function fetchCards(search = '') {
-        const params = new URLSearchParams()
-        if (search) {
-            params.append('search', search)
+        isFetching.value = true
+
+        try {
+            const params = new URLSearchParams()
+            if (search) params.append('search', search)
+
+            const { data } = await axios.get(`http://localhost:8000/api/stamp-cards/?${params}`)
+            stampCards.value = data
+            handleUpdateSelectedCard()
+        } catch (error) {
+            console.error('Error fetching cards:', error)
+        } finally {
+            isFetching.value = false
         }
-
-        const { data } = await axios.get(`http://localhost:8000/api/stamp-cards/?${params}`)
-        stampCards.value = data
-
-        handleUpdateSelectedCard()
     }
 
     async function handleSubmit(data) {

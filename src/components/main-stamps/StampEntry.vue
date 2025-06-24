@@ -1,7 +1,6 @@
 <template>
     <div class="stamp-entry">
         <Button
-            class="stamp-button"
             :icon="disabled ? 'check' : props.icon"
             :disabled="disabled"
             color="primary"
@@ -45,7 +44,7 @@
         align-items: center;
     }
 
-    .stamp-button {
+    .stamp-entry :deep(.btn){
         width: 64px;
         height: 64px;
         border-radius: 50%;
