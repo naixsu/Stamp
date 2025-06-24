@@ -223,25 +223,25 @@
         margin-bottom: 1rem;
     }
 
-    .sidebar-list::-webkit-scrollbar {
-        width: 6px;
-        background-color: var(--color-hover);
-    }
-
-    .sidebar-list::-webkit-scrollbar-track {
-        background-color: var(--color-text-two);
-    }
-
-    .sidebar-list::-webkit-scrollbar-thumb {
-        background-color: var(--color-text);
-        border-radius: 3px;
-    }
-
     .sidebar-list {
         flex-grow: 1;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    .sidebar-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .sidebar-list::-webkit-scrollbar-track {
+        background-color: var(--color-hover);
+        border-radius: 3px;
+    }
+
+    .sidebar-list::-webkit-scrollbar-thumb {
+        background-color: var(--color-text);
+        border-radius: 3px;
     }
 </style>

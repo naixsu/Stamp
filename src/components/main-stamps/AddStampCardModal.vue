@@ -1,11 +1,8 @@
 <template>
     <!--
         TODO:
-            - Handle max char length for card titles
-            - Make modal better
-            - Add notes field
+            - Handle newline for notes
             - Add icon types for notes
-            - Add char counter for notes
     -->
     <div class="modal-overlay">
         <div class="modal">
@@ -267,11 +264,6 @@
         color: var(--color-text);
     }
 
-    textarea {
-        resize: none;
-        height: 100px;
-    }
-
     input::placeholder,
     textarea::placeholder {
         color: var(--color-text);
@@ -288,6 +280,27 @@
     textarea.invalid {
         border-color: var(--color-danger);
         background-color: var(--color-danger-focus);
+    }
+
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+
+    textarea::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    textarea::-webkit-scrollbar-track {
+        background-color: var(--color-hover);
+        border-radius: 3px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+        background-color: var(--color-text);
+        border-radius: 3px;
     }
 
     .modal-actions {
