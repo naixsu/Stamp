@@ -7,10 +7,7 @@
             - Add icon types for notes
             - Add char counter for notes
     -->
-    <div
-        class="modal-overlay"
-        @click.self="emit('close')"
-    >
+    <div class="modal-overlay">
         <div class="modal">
             <h3 class="modal-title">
                 Add New Stamp Card
@@ -26,26 +23,42 @@
                         v-model.trim="form.title"
                         type="text"
                         placeholder="Enter title"
+                        maxlength="50"
                         :class="{
-                            'invalid': errors.title || errors.duplicate
+                            'invalid':
+                                errors.title ||
+                                errors.duplicate ||
+                                errors.titleExceed
                         }"
                         @focus="
                             errors.title = false;
+                            errors.titleExceed = false;
                             errors.duplicate = false;
-                            "
+                        "
                     />
-                    <p
-                        v-if="errors.title"
-                        class="message"
-                    >
-                        Title is required.
-                    </p>
-                    <p
-                        v-if="errors.duplicate"
-                        class="message"
-                    >
-                        Duplicate title.
-                    </p>
+                    <div class="inline-error">
+                        <p
+                            v-if="errors.title"
+                            class="message"
+                        >
+                            Title is required.
+                        </p>
+                        <p
+                            v-else-if="errors.duplicate"
+                            class="message"
+                        >
+                            Duplicate title.
+                        </p>
+                        <p
+                            v-else-if="errors.titleExceed"
+                            class="message"
+                        >
+                            Title is too long.
+                        </p>
+                        <p class="char-counter">
+                            {{ form.title.length }}/{{ maxTitleLength }}
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -70,7 +83,7 @@
                         v-if="errors.stampsNeeded"
                         class="message"
                     >
-                        Enter a valid stamp count (1–20 only).
+                        Enter a valid stamp count (1-{{ maxStampsLength }}) only.
                     </p>
                 </div>
             </div>
@@ -82,11 +95,26 @@
 
                 <div class="error-container">
                     <textarea
+                        id="notes"
                         v-model="form.notes"
                         placeholder="Extra info..."
+                        :class="{
+                            'invalid': errors.notesExceed
+                        }"
+                        @focus="errors.notesExceed = false"
                     />
+                    <div class="inline-error">
+                        <p
+                            v-if="errors.notesExceed"
+                            class="message"
+                        >
+                            Notes too long.
+                        </p>
+                        <p class="char-counter">
+                            {{ form.notes.length }}/{{ maxNotesLength }}
+                        </p>
+                    </div>
                 </div>
-
             </div>
 
             <div class="modal-actions">
@@ -125,8 +153,10 @@
     // Data
     const errors = ref({
         title: false,
+        titleExceed: false,
         stampsNeeded: false,
         duplicate: false,
+        notesExceed: false,
     })
 
     const form = reactive({
@@ -135,25 +165,27 @@
         notes: '',
     })
 
-    function handleSubmit() {
-        // Validate errors
-        const isEmpty = value =>
-            value === null || value === undefined || value === '';
+    const maxTitleLength = ref(20);
+    const maxStampsLength = ref(20);
+    const maxNotesLength = ref(100);
 
-        // Errors
-        // Stamp # error
-        if (form.stamps_needed < 1 || form.stamps_needed > 20) {
+    function handleSubmit() {
+        const isEmpty = value => value === null || value === undefined || value === '';
+
+        if (form.stamps_needed < 1 || form.stamps_needed > maxStampsLength.value) {
             errors.value.stampsNeeded = true;
         }
 
-        // No title
+        if (form.title.length > maxTitleLength.value) {
+            errors.value.titleExceed = true;
+        }
+
         if (isEmpty(form.title)) {
             errors.value.title = true;
         }
 
-        // Duplicate title
         const normalizedTitle = form.title.toLowerCase();
-        const isDuplicate = props.existingCards.some(card=>
+        const isDuplicate = props.existingCards.some(card =>
             card.title.toLowerCase() === normalizedTitle
         );
 
@@ -161,16 +193,19 @@
             errors.value.duplicate = true;
         }
 
+        if (form.notes.length > maxNotesLength.value) {
+            errors.value.notesExceed = true;
+        }
+
         if (Object.values(errors.value).some(error => error === true)) {
             return;
         }
 
-        emit('submit', {
-            ...form,
-        })
+        emit('submit', { ...form })
 
         form.title = ''
         form.stamps_needed = 1
+        form.notes = ''
         emit('close')
     }
 
@@ -209,7 +244,7 @@
     }
 
     .form-group {
-        margin-bottom: 1.25rem;
+        margin-bottom: 0.7rem;
     }
 
     label {
@@ -249,7 +284,8 @@
         background-color: var(--color-input-focus);
     }
 
-    input.invalid {
+    input.invalid,
+    textarea.invalid {
         border-color: var(--color-danger);
         background-color: var(--color-danger-focus);
     }
@@ -269,7 +305,19 @@
     .message {
         color: var(--color-danger);
         font-size: 0.8rem;
-        margin-top: 0.3rem;
-        padding-left: 0.25rem;
+        margin-top: 0.25rem;
+    }
+
+    .char-counter {
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        margin-left: auto;
+        color: var(--color-text);
+    }
+
+    .inline-error {
+        display: flex;
+        align-items: center;
+        min-height: 1.2rem;
     }
 </style>

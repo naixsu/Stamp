@@ -48,8 +48,7 @@
                 Notes
             </h3>
             <div class="notes">
-                Placeholder notes here. Need to add field in the backend.
-                Also add icon types
+                {{ entryNotes }}
             </div>
         </div>
 
@@ -81,6 +80,10 @@
 
     const isCardRedeemed = computed(() => {
         return props.card.is_redeemed;
+    })
+
+    const entryNotes = computed(() => {
+        return props.card.notes || 'No extra info.';
     })
 
     function handleToggle(entry) {
@@ -183,7 +186,7 @@
     .notes {
         border-radius: 0.5rem;
         min-height: 3rem;
-        font-size: 0.95rem;
+        font-size: 0.8rem;
         line-height: 1.4;
     }
 </style>

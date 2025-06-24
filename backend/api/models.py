@@ -18,6 +18,7 @@ class StampCard(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     is_removed = models.BooleanField(default=False)
     is_redeemed = models.BooleanField(default=False)
+    notes = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = "stampcard"
@@ -42,7 +43,6 @@ class StampEntry(models.Model):
     )
     date_created = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=False)  # Toggle for active/inactive stamp
-    notes = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = "stampentry"

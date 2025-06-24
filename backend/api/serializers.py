@@ -8,7 +8,11 @@ from .models import (
 class StampEntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = StampEntry
-        fields = ['pk', 'is_active', 'notes', 'date_created']
+        fields = [
+            "pk",
+            "is_active",
+            "date_created",
+        ]
 
 class StampCardSerializer(serializers.ModelSerializer):
     entries = StampEntrySerializer(many=True, read_only=True)
@@ -16,18 +20,19 @@ class StampCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = StampCard
         fields = [
-            'pk',
-            'title',
-            'stamps_needed',
-            'stamps_collected',
-            'is_redeemed',
-            'is_removed',
-            'date_created',
-            'entries',
+            "pk",
+            "title",
+            "stamps_needed",
+            "stamps_collected",
+            "is_redeemed",
+            "is_removed",
+            "date_created",
+            "notes",
+            "entries",
         ]
 
     def create(self, validated_data):
-        stamps_needed = validated_data.get('stamps_needed', 10) # Default for `stamps_needed`
+        stamps_needed = validated_data.get("stamps_needed", 10) # Default for `stamps_needed`
         stamp_card = StampCard.objects.create(**validated_data)
 
         # Bulk create StampEntry objects
