@@ -14,7 +14,6 @@
         </div>
 
         <Button
-            label="Delete"
             icon="trash-can-outline"
             size="small"
             color="danger"
@@ -72,27 +71,6 @@
     .stamp-card.active {
         background-color: var(--color-active);
     }
-
-    /* TODO: Figure this transform hover out maybe */
-    /* .stamp-card {
-        background-color: var(--color-primary);
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: var(--color-text);
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        position: relative;
-        z-index: 1;
-    }
-
-    .stamp-card:hover {
-        transform: scale(1.1);
-        z-index: 10;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    } */
 
     .header {
         display: flex;

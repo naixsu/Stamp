@@ -55,7 +55,7 @@
         min-height: 3rem;
         box-sizing: border-box;
         /* handling the scrollbar space */
-        /* margin-right: 21px; */
+        margin-right: 14px;
     }
 
     .search-input {

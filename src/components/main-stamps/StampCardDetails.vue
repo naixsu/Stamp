@@ -103,9 +103,28 @@
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        position: relative;
+    }
+
+    .redeemed-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color:  rgba(27, 45, 72, 0.5);
+        color: var(--color-white-text);
+        font-size: 1.8rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        pointer-events: none;
         border-top-right-radius: 1rem;
         border-bottom-right-radius: 1rem;
-        position: relative;
     }
 
     .details-panel.redeemed {
@@ -120,7 +139,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1.5rem;
         flex-wrap: wrap;
     }
 
@@ -132,30 +150,11 @@
         height: 100%;
     }
 
-    .redeemed-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(15, 15, 15, 0.7);
-        color: var(--color-white-text);
-        font-size: 1.8rem;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
-        pointer-events: none;
-        border-top-right-radius: 1rem;
-        border-bottom-right-radius: 1rem;
-    }
-
     .stamp-wrapper {
         background-color: var(--color-wrapper);
         padding: 1rem;
         border-radius: 1rem;
-        height: 50vh;
+        min-height: 300px; /* Ensures the wrapper has a minimum height */
         box-shadow: 0 2px 10px var(--color-wrapper-shadow);
         position: relative;
         display: flex;
@@ -166,7 +165,7 @@
     .stamps {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 1rem;
+        gap: 0.25rem; /* This coincides with .stamp-wrapper's min-height */
         width: 100%;
     }
 
@@ -176,17 +175,42 @@
         border-radius: 0.75rem;
         background-color: var(--color-wrapper);
         box-shadow: 0 2px 10px var(--color-wrapper-shadow);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        min-width: 0;
     }
 
     .notes-wrapper h3 {
         font-size: 1rem;
-        font-weight: 600;
+        margin-bottom: 0.5rem;
+        margin-top: 0px;
     }
 
     .notes {
-        border-radius: 0.5rem;
-        min-height: 3rem;
         font-size: 0.8rem;
-        line-height: 1.4;
+        white-space: pre-wrap;
+        word-break: break-word;  
+        overflow-y: auto;
+        flex-grow: 1;
+        min-height: 0;
+        min-width: 0;
+        max-width: 100%;
+        padding-right: 0.5rem;
+    }
+
+    .notes::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .notes::-webkit-scrollbar-track {
+        background-color: var(--color-hover);
+        border-radius: 3px;
+    }
+
+    .notes::-webkit-scrollbar-thumb {
+        background-color: var(--color-text);
+        border-radius: 3px;
     }
 </style>

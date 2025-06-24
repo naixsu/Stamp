@@ -194,13 +194,14 @@
 
     /* Sidebar */
     .sidebar {
-        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
         background-color: var(--color-sidebar);
         padding: 1rem;
         display: flex;
         flex-direction: column;
-        border-top-left-radius: 1rem;
-        border-bottom-left-radius: 1rem;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
         box-sizing: border-box;
     }
 
@@ -229,6 +230,7 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        padding-right: 0.5rem;
     }
 
     .sidebar-list::-webkit-scrollbar {

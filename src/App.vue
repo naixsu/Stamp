@@ -14,7 +14,6 @@
 <style>
     html, body, #app {
         height: 100%;
-        /* overflow: hidden; */
         margin: 0;
         box-sizing: border-box;
     }

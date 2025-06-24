@@ -164,7 +164,7 @@
 
     const maxTitleLength = ref(20);
     const maxStampsLength = ref(20);
-    const maxNotesLength = ref(100);
+    const maxNotesLength = ref(500);
 
     function handleSubmit() {
         const isEmpty = value => value === null || value === undefined || value === '';
