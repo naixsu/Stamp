@@ -1,14 +1,13 @@
 <template>
-    <!--
-        TODO:
-            - Make filled one look better?
-    -->
-    <Button
-        :icon="disabled ? 'check' : 'square'"
-        :disabled="disabled"
-        size="small"
-        @click="handleToggle"
-    />
+    <div class="stamp-entry">
+        <Button
+            class="stamp-button"
+            :icon="disabled ? 'check' : props.icon"
+            :disabled="disabled"
+            color="primary"
+            @click="handleToggle"
+        />
+    </div>
 </template>
 
 <script setup>
@@ -24,6 +23,12 @@
             type: Object,
             required: true,
         },
+
+        icon: {
+            type: String,
+            required: false,
+            default: 'coffee',
+        },
     })
 
     const emit = defineEmits(['toggle'])
@@ -34,9 +39,18 @@
 </script>
 
 <style scoped>
-    .stamp {
-        font-size: 1.2rem;
-        opacity: 0.3;
-        transition: opacity 0.2s;
+    .stamp-entry {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .stamp-button {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        justify-content: center;
+        padding: 0;
+        font-size: 1.8rem;
     }
 </style>

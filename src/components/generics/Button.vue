@@ -34,9 +34,9 @@
 
     const sizeClass = computed(() => {
         return {
-            small: 'btn-sm',
-            medium: 'btn-md',
-            large: 'btn-lg'
+            small: 'btn-small',
+            medium: 'btn-medium',
+            large: 'btn-large'
         }[props.size]
     })
 
@@ -46,6 +46,7 @@
             secondary: 'btn-secondary',
             success: 'btn-success',
             danger: 'btn-danger',
+            sidebar: 'btn-sidebar-item',
         }[props.color]
     })
 </script>
@@ -84,45 +85,45 @@
 
     /* Colors */
     .btn-primary {
-        background: #007bff;
-        color: white;
+        background-color: var(--color-primary);
+        color: var(--color-white-text);
     }
 
     .btn-primary:hover {
-        background: #0056b3;
-    }
-
-    .btn-secondary {
-        background: #6c757d;
-        color: white;
-    }
-
-    .btn-secondary:hover {
-        background: #5a6268;
+        background-color: var(--color-primary-hover);
     }
 
     .btn-success {
-        background: #28a745;
-        color: white;
+        background-color: var(--color-success);
+        color: var(--color-white-text);
     }
 
     .btn-success:hover {
-        background: #218838;
+        background-color: var(--color-hover);
     }
 
     .btn-danger {
-        background: #dc3545;
-        color: white;
+        background-color: var(--color-danger);
+        color: var(--color-white-text);
     }
 
     .btn-danger:hover {
-        background: #c82333;
+        background-color: var(--color-danger-hover);
     }
 
     .btn:disabled {
-        background: #FAFAFA;
-        color: #6D7679;
+        background-color: var(--color-disabled);
+        color: var(--color-white-text);
         border-color: #E4E7E8;
         cursor: not-allowed;
+    }
+
+    .btn-sidebar-item {
+        background-color: var(--color-sidebar-item-buttons);
+        color: var(--color-white-text);
+    }
+
+    .btn-sidebar-item:hover {
+        background-color: var(--color-hover);
     }
 </style>
