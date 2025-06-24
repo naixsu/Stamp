@@ -225,6 +225,7 @@
 
     .sidebar-list::-webkit-scrollbar {
         width: 6px;
+        background-color: var(--color-hover);
     }
 
     .sidebar-list::-webkit-scrollbar-track {

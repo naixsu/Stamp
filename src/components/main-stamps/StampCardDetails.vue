@@ -23,7 +23,7 @@
                 label="Mark as complete"
                 icon="pencil-outline"
                 size="medium"
-                color="success"
+                color="primary"
                 :disabled="!isCardComplete || isCardRedeemed"
                 @click="handleComplete"
             />

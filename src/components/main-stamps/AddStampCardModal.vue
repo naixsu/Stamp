@@ -5,8 +5,12 @@
             - Make modal better
             - Add notes field
             - Add icon types for notes
+            - Add char counter for notes
     -->
-    <div class="modal-overlay">
+    <div
+        class="modal-overlay"
+        @click.self="emit('close')"
+    >
         <div class="modal">
             <h3 class="modal-title">
                 Add New Stamp Card
@@ -21,7 +25,7 @@
                         id="title"
                         v-model.trim="form.title"
                         type="text"
-                        placeholder="Enter a title"
+                        placeholder="Enter title"
                         :class="{
                             'invalid': errors.title || errors.duplicate
                         }"
@@ -71,18 +75,32 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="notes">
+                    Notes (optional)
+                </label>
+
+                <div class="error-container">
+                    <textarea
+                        v-model="form.notes"
+                        placeholder="Extra info..."
+                    />
+                </div>
+
+            </div>
+
             <div class="modal-actions">
                 <Button
                     label="Submit"
                     icon="check"
-                    size="small"
-                    color="success"
+                    size="medium"
+                    color="primary"
                     @click="handleSubmit"
                 />
                 <Button
                     label="Cancel"
                     icon="close"
-                    size="small"
+                    size="medium"
                     color="danger"
                     @click="handleCancel"
                 />
@@ -114,6 +132,7 @@
     const form = reactive({
         title: '',
         stamps_needed: 1,
+        notes: '',
     })
 
     function handleSubmit() {
@@ -156,7 +175,6 @@
     }
 
     function handleCancel() {
-        console.log('cancel');
         emit('close')
     }
 </script>
@@ -165,7 +183,7 @@
     .modal-overlay {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(27, 45, 72, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -173,13 +191,14 @@
     }
 
     .modal {
-        background: var(--color-primary);
+        background-color: var(--color-modal-bg);
         padding: 2rem;
-        border-radius: 12px;
+        border-radius: 1rem;
         width: 100%;
-        max-width: 360px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        color: var(--color-text);
+        max-width: 420px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        font-family: 'Inter', sans-serif;
+        color: #1b2d48;
     }
 
     .modal-title {
@@ -198,40 +217,48 @@
         margin-bottom: 0.4rem;
         font-size: 0.95rem;
         font-weight: 500;
-        color: var(--color-white-text);
-    }
-
-    input {
-        width: 100%;
-        padding: 0.5rem 0.75rem;
-        font-size: 0.95rem;
-        border-radius: 6px;
-        border: 1px solid var(--color-icon-border);
-        background-color: var(--color-wrapper);
         color: var(--color-text);
-        transition: border-color 0.2s ease;
+        font-size: 1rem;
     }
 
-    input::placeholder {
+    input,
+    textarea {
+        border: 1px solid var(--color-wrapper-shadow);
+        border-radius: 8px;
+        padding: 0.6rem 0.8rem;
+        font-family: inherit;
+        transition: border 0.2s;
+        background-color: var(--color-white-text);
         color: var(--color-text);
     }
 
-    input:focus {
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: var(--color-text);
+    }
+
+    input:focus,
+    textarea:focus {
         outline: none;
-        border-color: var(--color-primary-hover);
-        background-color: var(--color-hover);
+        border-color: var(--color-icon-border);
+        background-color: var(--color-input-focus);
     }
 
     input.invalid {
         border-color: var(--color-danger);
-        background-color: #fff0f3;
+        background-color: var(--color-danger-focus);
     }
 
     .modal-actions {
         display: flex;
         justify-content: flex-end;
         gap: 0.75rem;
-        margin-top: 1.25rem;
+        margin-top: 1.5rem;
     }
 
     .error-container {

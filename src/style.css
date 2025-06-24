@@ -27,9 +27,13 @@
   --color-icon: #9dc8e8;
   --color-icon-border: #3d6ea2;
   --color-text: #2d6190;
-  --color-success: #a5ccea;
-  
+
+  /* Modal */
+  --color-modal-bg: #eaf2fc;
+  --color-input-focus: #ebf6fe;
+
   /* Danger */
   --color-danger: #9e2c51;
-  --color-danger-hover: #7a2340;
+  --color-danger-hover: #c97792;
+  --color-danger-focus: #fff0f3;
 }
