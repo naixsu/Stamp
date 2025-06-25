@@ -37,7 +37,7 @@
                     <EmptyState
                         v-if="!isFetching"
                         icon="card-off"
-                        size="large"
+                        size="medium"
                         :primary-text="emptyStateMessage"
                     />
                 </template>
@@ -53,7 +53,6 @@
 
         <!-- Details Panel -->
         <StampCardDetails
-            v-if="selectedCard"
             :card="selectedCard"
             @update-entry="handleEntryUpdate"
             @mark-complete="handleMarkComplete"

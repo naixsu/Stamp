@@ -6,10 +6,11 @@
             :class="[
                 'mdi',
                 `mdi-${icon}`,
-                sizeClass
+                sizeClass,
+                iconColorClass
             ]"
         />
-        <p class="mesage">
+        <p :class="['text', textSizeClass]">
             {{ primaryText }}
         </p>
     </div>
@@ -20,6 +21,10 @@
 
     const props = defineProps({
         icon: String,
+        iconColor: {
+            type: String,
+            default: 'light', // light, dark
+        },
         primaryText: {
             type: String,
             default: '',
@@ -27,6 +32,10 @@
         size: {
             type: String,
             default: 'medium', // small, medium, large
+        },
+        textSize: {
+            type: String,
+            default: 'normal', // small, normal, large
         },
     })
 
@@ -36,6 +45,21 @@
             medium: 'icon-medium',
             large: 'icon-large'
         }[props.size]
+    })
+
+    const iconColorClass = computed(() => {
+        return {
+            light: 'icon-white',
+            dark: 'icon-dark',
+        }[props.iconColor]
+    })
+
+    const textSizeClass = computed(() => {
+        return {
+            small: 'text-small',
+            normal: 'text-normal',
+            large: 'text-large'
+        }[props.textSize]
     })
 </script>
 
@@ -53,27 +77,46 @@
         opacity: 0.75;
     }
 
-    i {
-        color: var(--color-white-text);;
-    }
-
     /* Sizes */
     .icon-small {
         font-size: 5rem;
     }
 
     .icon-medium {
-        font-size: 7rem;
-    }
-
-    .icon-large {
         font-size: 10rem;
     }
 
-    .message {
+    .icon-large {
+        font-size: 15rem;
+    }
+
+    /* Icon Colors */
+    .icon-white {
+        color: var(--color-white-text)
+    }
+
+    .icon-dark {
+        color: var(--color-text)
+    }
+
+    /* Text */
+    .text {
         max-width: 100%;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    /* Text Size */
+    .text-small {
+        font-size: 0.75rem;
+    }
+
+    .text-normal {
+        font-size: 0.9rem;
+    }
+
+    .text-large {
+        font-size: 1.1rem;
     }
 </style>

@@ -1,6 +1,5 @@
 <template>
     <div
-        v-if="props.card"
         class="details-panel"
         :class="{ 'redeemed': isCardRedeemed }"
     >
@@ -10,43 +9,51 @@
         >
             Redeemed
         </div>
-        <div class="details-header">
-            <h2>
-                {{ props.card.title }}
-            </h2>
-            <Button
-                label="Mark as complete"
-                icon="pencil-outline"
-                size="medium"
-                color="primary"
-                :disabled="!isCardComplete || isCardRedeemed"
-                @click="handleComplete"
-            />
-        </div>
-
-        <!-- This is the square wrapper for the stamp entries -->
-        <div
-            class="stamp-wrapper"
-        >
-            <div class="stamps">
-                <StampEntry
-                    v-for="entry in props.card.entries"
-                    :key="entry.pk"
-                    :disabled="entry.is_active"
-                    :entry="entry"
-                    @toggle="handleToggle"
+        <template v-if="props.card">
+            <div class="details-header">
+                <h2>
+                    {{ props.card.title }}
+                </h2>
+                <Button
+                    label="Mark as complete"
+                    icon="pencil-outline"
+                    size="medium"
+                    color="primary"
+                    :disabled="!isCardComplete || isCardRedeemed"
+                    @click="handleComplete"
                 />
             </div>
-        </div>
-        <div class="notes-wrapper">
-            <h3>
-                Notes
-            </h3>
-            <div class="notes">
-                {{ entryNotes }}
-            </div>
-        </div>
 
+            <!-- This is the square wrapper for the stamp entries -->
+            <div class="stamp-wrapper">
+                <div class="stamps">
+                    <StampEntry
+                        v-for="entry in props.card.entries"
+                        :key="entry.pk"
+                        :disabled="entry.is_active"
+                        :entry="entry"
+                        @toggle="handleToggle"
+                    />
+                </div>
+            </div>
+            <div class="notes-wrapper">
+                <h3>
+                    Notes
+                </h3>
+                <div class="notes">
+                    {{ entryNotes }}
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <EmptyState
+                icon="card-off-outline"
+                size="large"
+                icon-color="dark"
+                primary-text="No card selected"
+                text-size="large"
+            />
+        </template>
     </div>
 
 </template>
@@ -54,6 +61,8 @@
 <script setup>
     import { computed } from 'vue'
     import Button from '../generics/Button.vue'
+    import EmptyState from '../generics/EmptyState.vue'
+
     import StampEntry from './StampEntry.vue'
 
     const props = defineProps({
@@ -74,7 +83,7 @@
     })
 
     const isCardRedeemed = computed(() => {
-        return props.card.is_redeemed;
+        return props.card?.is_redeemed;
     })
 
     const entryNotes = computed(() => {
