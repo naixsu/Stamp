@@ -9,7 +9,9 @@
                 sizeClass
             ]"
         />
-        <p>{{ primaryText }}</p>
+        <p class="mesage">
+            {{ primaryText }}
+        </p>
     </div>
 </template>
 
@@ -51,8 +53,8 @@
         opacity: 0.75;
     }
 
-    .mdi {
-        /* color: var(--color-white-text);; */
+    i {
+        color: var(--color-white-text);;
     }
 
     /* Sizes */
@@ -66,5 +68,12 @@
 
     .icon-large {
         font-size: 10rem;
+    }
+
+    .message {
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 </style>

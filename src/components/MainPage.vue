@@ -64,7 +64,6 @@
 <script setup>
     import { ref, onMounted, watch, computed } from 'vue'
     import axios from 'axios'
-    import debounce from 'debounce'
 
     // Generics
     import Button from './generics/Button.vue'
@@ -83,15 +82,10 @@
     const searchKey = ref('')
     const isFetching = ref(false)
 
-    // Debounced
-    const debouncedFetchCards = debounce((value) => {
-        fetchCards(value)
-    }, 300)
-
     // Watch
     watch(searchKey, (value) => {
         isFetching.value = true;
-        debouncedFetchCards(value);
+        fetchCards(value)
     })
 
     // onMounted

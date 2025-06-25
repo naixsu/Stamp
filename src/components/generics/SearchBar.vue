@@ -1,8 +1,4 @@
 <template>
-    <!--
-        TODO:
-        - Add EmptyState
-    -->
     <div class="search-bar">
         <input
             class="search-input"

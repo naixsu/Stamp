@@ -1,9 +1,4 @@
 <template>
-    <!--
-        TODO:
-            - Truncate long card titles if ever we dont
-                handle max char length on making cards
-    -->
     <div
         v-if="props.card"
         class="details-panel"

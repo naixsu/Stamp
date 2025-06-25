@@ -1,7 +1,6 @@
 <template>
     <!--
         TODO:
-            - Handle newline for notes
             - Add icon types for notes
     -->
     <div class="modal-overlay">
