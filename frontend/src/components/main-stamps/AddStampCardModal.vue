@@ -1,8 +1,4 @@
 <template>
-    <!--
-        TODO:
-            - Add icon types for notes
-    -->
     <div class="modal-overlay">
         <div class="modal">
             <h3 class="modal-title">

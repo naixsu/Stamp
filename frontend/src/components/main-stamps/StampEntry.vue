@@ -22,11 +22,12 @@
             type: Object,
             required: true,
         },
-
+        // TODO:
+        // Add different icons prob an enum from the backend
         icon: {
             type: String,
             required: false,
-            default: 'coffee',
+            default: 'cat',
         },
     })
 

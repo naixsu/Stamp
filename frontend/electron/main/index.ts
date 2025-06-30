@@ -47,43 +47,13 @@ const IS_DEV = process.env.NODE_ENV === 'development';
 
 async function createWindow() {
 
-  // Devtools
-  // if (IS_DEV) {
-  //   app.setName('Stamp Local');
-  //   const { default: installExtension, VUEJS_DEVTOOLS } = require('electron-extension-installer');
-  //   // https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
-  //   // Fixes this issue: https://github.com/MarshallOfSound/electron-devtools-installer/issues/238#issuecomment-1499578154
-  //   await installExtension(VUEJS_DEVTOOLS, {
-  //       loadExtensionOptions: {
-  //           allowFileAccess: true
-  //       }
-  //   });
-  // }
-
-  // TODO: Figure this out
   if (IS_DEV) {
     app.setName('Stamp Local');
-    const { default: installExtension, VUEJS_DEVTOOLS } = require('electron-extension-installer');
-
-    try {
-      const name = await installExtension(VUEJS_DEVTOOLS, {
-        loadExtensionOptions: {
-          allowFileAccess: true
-        }
-      });
-      console.log(`✅ Vue DevTools installed: ${name}`);
-    } catch (err) {
-      console.error('❌ Failed to install Vue DevTools:', err);
-    }
   }
 
   win = new BrowserWindow({
     title: 'Main window',
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
-    // TOOD: Figure this out
-    // Setting `width` and `height` whenever `resizable` is `false`.
-    // minHeight: 720,
-    // minWidth: 900,
     width: 900,
     height: 720,
     resizable: false,
